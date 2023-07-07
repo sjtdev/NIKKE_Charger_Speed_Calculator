@@ -1,0 +1,215 @@
+html {
+  background-color: black;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /* position: absolute; */
+}
+#chargingsheet {
+  display: block;
+  position: relative;
+}
+#chargingsheet > span {
+  position: absolute;
+  visibility: hidden;
+  right: auto;
+}
+#chargingsheet > span:not(:nth-child(7)) {
+  transition: all 0.2s;
+}
+#chargingsheet > span.active {
+  visibility: inherit !important;
+}
+#chargingsheet > span.tip_text {
+  font-size: 12px;
+  transform: translateX(50%);
+}
+#chargingsheet > span.tip_line {
+  top: 12px;
+  position: absolute;
+}
+#chargingsheet > span:nth-child(3n+1) {
+  color: green;
+}
+#chargingsheet > span:nth-child(3n+2) {
+  color: yellow;
+}
+#chargingsheet > span:nth-child(3n+3) {
+  color: red;
+}
+#chargingsheet #charging_line {
+  height: 12px;
+  width: 100%;
+  display: flex;
+}
+#chargingsheet #charging_line div {
+  flex-grow: 1;
+  flex-basis: 0px;
+  flex-shrink: 1;
+  text-align: right;
+  font-size: 8px;
+  line-height: 12px;
+  padding-right: 2px;
+  color: #000;
+}
+#chargingsheet #charging_line div span {
+  position: relative;
+}
+#chargingsheet #charging_line div:nth-child(1) {
+  flex-grow: 2;
+  background-color: orangered;
+}
+#chargingsheet #charging_line div:nth-child(2) {
+  background-color: orange;
+}
+#chargingsheet #charging_line div:nth-child(3) {
+  background-color: yellow;
+}
+#chargingsheet #charging_line div:nth-child(4) {
+  background-color: gray;
+}
+#selected {
+  height: 130px;
+  flex-shrink: 0;
+}
+#selected .nikke {
+  animation-duration: 0.2s;
+  animation-name: showon;
+}
+@keyframes showon {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#main {
+  overflow-y: scroll;
+  height: auto;
+}
+.nikke {
+  position: relative;
+  overflow: hidden;
+  margin: 1px;
+}
+.nikke .image img {
+  width: 128px;
+  height: 128px;
+  transition: all 0.2s;
+}
+.nikke:hover {
+  border: 2px #6cf solid;
+  margin: -1px;
+}
+.nikke:hover .image img {
+  transform: scale(1.1);
+}
+.nikke .name {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  color: white;
+  background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+  transform: translateX(-50%);
+}
+.nikke .name span {
+  text-align: center;
+}
+.nikke .class {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 48px;
+  flex-wrap: wrap;
+}
+.nikke .class img {
+  /* border: 2px solid #000; */
+  width: 24px;
+  background-color: rgba(120, 120, 120, 0.7);
+  padding: 0;
+  margin: 0;
+}
+.nikke .code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.nikke .code img {
+  width: 24px;
+}
+.nikke .code #charging {
+  top: 0;
+  text-align: right;
+  background-color: rgba(120, 120, 120, 0.7);
+}
+.nikke .code #charging.color1 {
+  color: orangered;
+}
+.nikke .code #charging.color2 {
+  color: orange;
+}
+.nikke .code #charging.color3 {
+  color: yellow;
+}
+.nikke .code #charging.color4 {
+  color: wheat;
+}
+.nikke .code #charging div:not(:nth-child(1)):not(:nth-child(2)) {
+  appearance: 1;
+}
+#filters {
+  margin-bottom: 12px;
+}
+#filters .active {
+  background-color: #6cf;
+  border-radius: 4px 4px;
+}
+#filters .options {
+  display: flex;
+  position: relative;
+  flex-grow: 0;
+}
+#filters .options .option {
+  transition: all 0.2s;
+  margin: 4px;
+  position: relative;
+}
+#filters .options .option img {
+  width: 48px;
+  align-items: center;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#filters #manufacturers {
+  width: 64px;
+  height: 72px;
+}
+#filters #manufacturers img {
+  width: 60px;
+}
+#filters #weapons {
+  width: 48px;
+}
+img {
+  vertical-align: top;
+}
