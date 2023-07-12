@@ -979,5 +979,15 @@
         "Element":"Water",
         "Burst":"3",
         "Charging":""
+    },{
+        "Name":"Nero",
+        "ID":"380",
+        "Manufacturer":"Tetra",
+        "Squad":"Happy Zoo",
+        "Weapon":"SMG",
+        "Class":"Defender",
+        "Element":"Fire",
+        "Burst":"2",
+        "Charging":""
     }
 ]
