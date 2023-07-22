@@ -989,5 +989,15 @@
         "Element":"Fire",
         "Burst":"2",
         "Charging":""
+    },{
+        "Name":"Mast",
+        "ID":"350",
+        "Manufacturer":"Elysion",
+        "Squad":"Aegis",
+        "Weapon":"SMG",
+        "Class":"Supporter",
+        "Element":"Electric",
+        "Burst":"2",
+        "Charging":""
     }
 ]
