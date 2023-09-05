@@ -999,5 +999,55 @@
         "Element":"Electric",
         "Burst":"2",
         "Charging":""
+    },{
+        "Name":"Anis: Sparkling Summer",
+        "ID":"015",
+        "Manufacturer":"Tetra",
+        "Squad":"Counters",
+        "Weapon":"SG",
+        "Class":"Supporter",
+        "Element":"Electric",
+        "Burst":"3",
+        "Charging":""
+    },{
+        "Name":"Helm: Aquamarine",
+        "ID":"353",
+        "Manufacturer":"Elysion",
+        "Squad":"Aegis",
+        "Weapon":"AR",
+        "Class":"Attacker",
+        "Element":"Iron",
+        "Burst":"2",
+        "Charging":""
+    },{
+        "Name":"Anchor",
+        "ID":"351",
+        "Manufacturer":"Elysion",
+        "Squad":"Aegis",
+        "Weapon":"RL",
+        "Class":"Defender",
+        "Element":"Wind",
+        "Burst":"1",
+        "Charging":""
+    },{
+        "Name":"2B",
+        "ID":"810",
+        "Manufacturer":"Abnormal",
+        "Squad":"",
+        "Weapon":"AR",
+        "Class":"Defender",
+        "Element":"Fire",
+        "Burst":"3",
+        "Charging":""
+    },{
+        "Name":"A2",
+        "ID":"811",
+        "Manufacturer":"Abnormal",
+        "Squad":"",
+        "Weapon":"RL",
+        "Class":"Attacker",
+        "Element":"Fire",
+        "Burst":"3",
+        "Charging":""
     }
 ]

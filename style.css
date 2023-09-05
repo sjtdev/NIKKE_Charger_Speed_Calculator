@@ -105,6 +105,9 @@ body {
   overflow: hidden;
   margin: 1px;
 }
+.nikke.hide {
+  display: none;
+}
 .nikke .image img {
   width: 128px;
   height: 128px;
