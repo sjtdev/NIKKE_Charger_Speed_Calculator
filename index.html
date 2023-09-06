@@ -296,7 +296,7 @@
                     let nikke = window._data[n];
                     let interval = nikke.Name == "Alice" ? ATTACT_INTERVAL[nikke.Name] : ATTACT_INTERVAL[nikke.Weapon];
                     // H47 * (($K$46 - MOD($K$46, K47)) / K47) * 4;
-                    temp_count += nikke.Charging * ((i - (i % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
+                    temp_count += nikke.Charging * ((i - Math.floor(i % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
 
                     // switch (window._data[n].Weapon) {
                     //     case "RL":
@@ -363,7 +363,7 @@
         function Charging_Show(nikke) {
             let result = [];
             let interval = nikke.Name == "Alice" ? ATTACT_INTERVAL[nikke.Name] : ATTACT_INTERVAL[nikke.Weapon];
-            result[0] = nikke.Charging * ((2.4 - (2.4 % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
+            result[0] = nikke.Charging * ((2.4 - Math.floor(2.4 % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
             if (result[0] > 27) result[1] = "color1";
             else if (result[0] > 11) result[1] = "color2";
             else if (result[0] > 4) result[1] = "color3";

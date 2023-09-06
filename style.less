@@ -25,7 +25,7 @@ body {
     display: block;
     position: relative;
 
-    &>span {
+    & > span {
         position: absolute;
         // right: 50%;
         // text-align: right;
@@ -50,15 +50,15 @@ body {
             position: absolute;
         }
 
-        &:nth-child(3n+1) {
+        &:nth-child(3n + 1) {
             color: green;
         }
 
-        &:nth-child(3n+2) {
+        &:nth-child(3n + 2) {
             color: yellow;
         }
 
-        &:nth-child(3n+3) {
+        &:nth-child(3n + 3) {
             color: red;
         }
     }
@@ -134,7 +134,7 @@ body {
     margin: 1px;
     // border: 2px solid transparent;
 
-    &.hide{
+    &.hide {
         display: none;
     }
 
@@ -191,13 +191,13 @@ body {
         right: 0;
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
 
         img {
             width: 24px;
         }
 
         #charging {
-            // position: absolute;
             top: 0;
             text-align: right;
             background-color: rgba(120, 120, 120, 0.7);
@@ -211,7 +211,7 @@ body {
             }
 
             &.color3 {
-                color: yellow
+                color: yellow;
             }
 
             &.color4 {
@@ -222,7 +222,6 @@ body {
                 appearance: 1;
             }
         }
-
     }
 }
 
@@ -271,7 +270,6 @@ body {
     #weapons {
         width: 48px;
     }
-
 }
 
 img {
