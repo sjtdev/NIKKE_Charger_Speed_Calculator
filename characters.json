@@ -961,6 +961,7 @@
         "Charging":""
     },{
         "Name":"Mary: Bay Goddess",
+        "Name_cn":"梅里：海湾女神",
         "ID":"132",
         "Manufacturer":"Tetra",
         "Squad":"Seraphim",
@@ -971,6 +972,7 @@
         "Charging":""
     },{
         "Name":"Neon: Blue Ocean",
+        "Name_cn":"尼恩：蓝色海洋",
         "ID":"014",
         "Manufacturer":"Elysion",
         "Squad":"Counters",
@@ -981,6 +983,7 @@
         "Charging":""
     },{
         "Name":"Nero",
+        "Name_cn":"尼罗",
         "ID":"380",
         "Manufacturer":"Tetra",
         "Squad":"Happy Zoo",
@@ -991,6 +994,7 @@
         "Charging":""
     },{
         "Name":"Mast",
+        "Name_cn":"马斯特",
         "ID":"350",
         "Manufacturer":"Elysion",
         "Squad":"Aegis",
@@ -1001,6 +1005,7 @@
         "Charging":""
     },{
         "Name":"Anis: Sparkling Summer",
+        "Name_cn":"阿妮斯：闪耀夏日",
         "ID":"015",
         "Manufacturer":"Tetra",
         "Squad":"Counters",
@@ -1011,6 +1016,7 @@
         "Charging":""
     },{
         "Name":"Helm: Aquamarine",
+        "Name_cn":"海伦：海蓝宝石",
         "ID":"353",
         "Manufacturer":"Elysion",
         "Squad":"Aegis",
@@ -1021,6 +1027,7 @@
         "Charging":""
     },{
         "Name":"Anchor",
+        "Name_cn":"安克",
         "ID":"351",
         "Manufacturer":"Elysion",
         "Squad":"Aegis",

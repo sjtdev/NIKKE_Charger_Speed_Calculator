@@ -178,39 +178,39 @@
                 }
                 window._data = new_data;
                 Refresh_NikkeList(new_data);
-            };
-            // Refresh_NikkeList(new_data);
 
-            $("#filters .option").click(function () {
-                $(this).toggleClass("active");
-                $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
-                // console.log($(this).attr('data-selected'));
-                let filter_manufacturers = [],
-                    filter_weapons = [],
-                    filter_classes = [],
-                    filter_elements = [],
-                    filter_bursts = [];
-                $("#filters #manufacturers .option").each(function () {
-                    if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
+                $("#filters .option").click(function () {
+                    $(this).toggleClass("active");
+                    $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
+                    // console.log($(this).attr('data-selected'));
+                    let filter_manufacturers = [],
+                        filter_weapons = [],
+                        filter_classes = [],
+                        filter_elements = [],
+                        filter_bursts = [];
+                    $("#filters #manufacturers .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
+                    });
+                    $("#filters #weapons .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
+                    });
+                    $("#filters #classes .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
+                    });
+                    $("#filters #elements .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
+                    });
+                    $("#filters #bursts .option").each(function () {
+                        if (parseInt($(this).attr("data-selected")))
+                            // console.log($(this).attr('id').substring(6))
+                            filter_bursts.push($(this).attr("id").substring(6));
+                    });
+                    Filted_Result(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
                 });
-                $("#filters #weapons .option").each(function () {
-                    if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
-                });
-                $("#filters #classes .option").each(function () {
-                    if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
-                });
-                $("#filters #elements .option").each(function () {
-                    if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
-                });
-                $("#filters #bursts .option").each(function () {
-                    if (parseInt($(this).attr("data-selected")))
-                        // console.log($(this).attr('id').substring(6))
-                        filter_bursts.push($(this).attr("id").substring(6));
-                });
-                Filted_Result(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
-            });
+                $("#chargingsheet>span:nth-child(7)").addClass("active");
+            };
         };
-        $("#chargingsheet>span:nth-child(7)").addClass("active");
+        // Refresh_NikkeList(new_data);
     </script>
 
     <script>
@@ -239,6 +239,7 @@
         function Refresh_NikkeList(new_data) {
             let content = "";
             for (let n in new_data) {
+                let charging_show = Charging_Show(new_data[n]);
                 let new_nikke = `<div class="nikke" data-id="${n}">
                     <p class="image"><img src="./images/si_c${n}_00_s.webp" draggable="false"></p>
                     <p class="name">${new_data[n].Name_cn ? new_data[n].Name_cn : new_data[n].Name}</p>
@@ -249,7 +250,7 @@
                     </p>
                     <p class="code">
                         <img src="./images/Code${CODE_REPLACER[new_data[n].Element]}_hexagon.webp">
-                        <span id="charging" class="${Charging_Color(new_data[n])}">${Charging_speed(new_data[n]).toFixed(1) + (new_data[n].ChargePlus ? "+" : "")}</span>
+                        <span id="charging" class="${charging_show[1]}">${charging_show[0].toFixed(1) + (new_data[n].ChargePlus ? "+" : "")}</span>
                     </p>
                 </div>`;
                 content += new_nikke;
@@ -359,17 +360,15 @@
             // }
             //#endregion
         }
-        function Charging_Color(nikke) {
+        function Charging_Show(nikke) {
+            let result = [];
             let interval = nikke.Name == "Alice" ? ATTACT_INTERVAL[nikke.Name] : ATTACT_INTERVAL[nikke.Weapon];
-            let charging = nikke.Charging * ((2.4 - (2.4 % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
-            if (charging > 27) return "color1";
-            if (charging > 11) return "color2";
-            if (charging > 4) return "color3";
-            return "color4";
-        }
-        function Charging_speed(nikke) {
-            let interval = nikke.Name == "Alice" ? ATTACT_INTERVAL[nikke.Name] : ATTACT_INTERVAL[nikke.Weapon];
-            return nikke.Charging * ((2.4 - (2.4 % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
+            result[0] = nikke.Charging * ((2.4 - (2.4 % interval)) / interval) * (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
+            if (result[0] > 27) result[1] = "color1";
+            else if (result[0] > 11) result[1] = "color2";
+            else if (result[0] > 4) result[1] = "color3";
+            else result[1] = "color4";
+            return result;
         }
     </script>
 </html>
