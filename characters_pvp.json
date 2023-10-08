@@ -1,0 +1,9 @@
+{
+    "Alice": {
+        "AttactInterval": 1.7
+    },
+    "A2": {
+        "AttactInterval": 2.05,
+        "ChargeMultiple": 9
+    }
+}

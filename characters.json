@@ -1056,5 +1056,38 @@
         "Element":"Fire",
         "Burst":"3",
         "Charging":""
+    },{
+        "Name":"Marciana",
+        "Name_cn":"玛律恰那",
+        "ID":"321",
+        "Manufacturer":"Elysion",
+        "Squad":"Academia",
+        "Weapon":"SG",
+        "Class":"Supporter",
+        "Element":"Iron",
+        "Burst":"2",
+        "Charging":""
+    },{
+        "Name":"Naga",
+        "Name_cn":"娜嘉",
+        "ID":"450",
+        "Manufacturer":"Missilis",
+        "Squad":"Dazzling Pearl",
+        "Weapon":"SG",
+        "Class":"Supporter",
+        "Element":"Electric",
+        "Burst":"2",
+        "Charging":""
+    },{
+        "Name":"Tia",
+        "Name_cn":"蒂亚",
+        "ID":"451",
+        "Manufacturer":"Missilis",
+        "Squad":"Dazzling Pearl",
+        "Weapon":"RL",
+        "Class":"Defender",
+        "Element":"Iron",
+        "Burst":"1",
+        "Charging":""
     }
 ]

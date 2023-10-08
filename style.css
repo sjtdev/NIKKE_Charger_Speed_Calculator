@@ -204,6 +204,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+#filters #orders .option {
+  margin: 0;
+  width: 56px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+}
+#filters #orders .option.active[data-selected="0"] {
+  background-color: red;
+}
 #filters #manufacturers {
   width: 64px;
   height: 72px;
