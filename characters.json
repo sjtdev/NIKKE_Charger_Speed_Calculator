@@ -1089,5 +1089,16 @@
         "Element":"Iron",
         "Burst":"1",
         "Charging":""
+    },{
+        "Name":"Quiry",
+        "Name_cn":"基里",
+        "ID":"033",
+        "Manufacturer":"Elysion",
+        "Squad":"A.C.P.U.",
+        "Weapon":"RL",
+        "Class":"Supporter",
+        "Element":"Wind",
+        "Burst":"3",
+        "Charging":""
     }
 ]
