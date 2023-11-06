@@ -1100,5 +1100,27 @@
         "Element":"Wind",
         "Burst":"3",
         "Charging":""
+    },{
+        "Name":"Red Hood",
+        "Name_cn":"小红帽",
+        "ID":"470",
+        "Manufacturer":"Pilgrim",
+        "Squad":"Goddess",
+        "Weapon":"SR",
+        "Class":"Attacker",
+        "Element":"Iron",
+        "Burst":"p",
+        "Charging":""
+    },{
+        "Name":"Snow White: Innocent Days",
+        "Name_cn":"白雪公主：纯真年代",
+        "ID":"224",
+        "Manufacturer":"Pilgrim",
+        "Squad":"Goddess",
+        "Weapon":"AR",
+        "Class":"Attacker",
+        "Element":"Iron",
+        "Burst":"3",
+        "Charging":""
     }
 ]
