@@ -8,5 +8,14 @@
     },
     "Modernia": {
         "ChargeMultiple": 2
+    },
+    "Harran": {
+        "ChargeMultiple": 1.25
+    },
+    "Scarlet": {
+        "ChargePlus": true
+    },
+    "Jackal": {
+        "ChargePlus": true
     }
 }
