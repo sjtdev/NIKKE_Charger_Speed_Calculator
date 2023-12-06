@@ -121,6 +121,7 @@
                 <div id="by_id" class="option">ID<span>↑</span></div>
                 <div id="by_charging" class="option">充速<span>↓</span></div>
                 <div id="by_weapon" class="option">武器<span>↓</span></div>
+                <div id="current_count"><span id="cc_number"></span></div>
             </div>
         </div>
 
@@ -171,6 +172,7 @@
                         new_data2[n] = new_data1[n];
                         new_data2[n] = {
                             Name: new_data1[n].Name,
+                            Color: new_data1[n].Color,
                             ID: new_data1[n].ID,
                             Manufacturer: new_data1[n].Manufacturer,
                             Squad: new_data1[n].Squad,
@@ -306,6 +308,7 @@
         function Filted_Result(Manufacturer = [], Weapon = [], Class = [], Element = [], Burst = []) {
             let data = window._data;
             let nikkes = $("#main>.nikke");
+            let nikkes_count = nikkes.length;
             nikkes.each(function () {
                 $(this).removeClass("hide");
                 let id = $(this).attr("data-id");
@@ -324,14 +327,16 @@
                 if (Burst.length > 0) {
                     if (Burst.indexOf(data[id].Burst) < 0) $(this).addClass("hide");
                 }
+                if ($(this).hasClass('hide')) nikkes_count--;
             });
+            $('#cc_number').text(nikkes_count);
         }
         function Refresh_NikkeList(new_data) {
             let content = "";
             for (let n in new_data) {
                 let new_nikke = `<div class="nikke" data-id="${n}">
                     <p class="image"><img src="./images/si_c${n}_00_s.webp" draggable="false"></p>
-                    <p class="name">${new_data[n].Name_cn ? new_data[n].Name_cn : new_data[n].Name}</p>
+                    <p class="name" style="background:linear-gradient(to top, ${new_data[n].Color}, rgba(0, 0, 0, 0))">${new_data[n].Name_cn ? new_data[n].Name_cn : new_data[n].Name}</p>
                     <p class="class">
                         <img src="./images/icn_class_${new_data[n].Class.toLowerCase()}.webp" draggable="false">
                         <img src="./images/icn_burst_${new_data[n].Burst}.webp" draggable="false"><br/>
@@ -346,7 +351,8 @@
             }
             // $('#test .name').text(data.length + "/87")
             $("#main").html(content);
-
+            $('#cc_number').text(Object.keys(new_data).length);
+            console.log()
             $("#main .nikke").click(function () {
                 let id = $(this).attr("data-id");
 
