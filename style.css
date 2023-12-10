@@ -124,14 +124,14 @@ body {
   text-align: center;
   width: 100%;
   position: absolute;
-  left: 50%;
   bottom: 0;
   color: white;
   background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
-  transform: translateX(-50%);
+  text-wrap: nowrap;
 }
 .nikke .name span {
-  text-align: center;
+  display: inline-block;
+  position: relative;
 }
 .nikke .class {
   position: absolute;
