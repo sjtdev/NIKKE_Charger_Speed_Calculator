@@ -415,7 +415,7 @@
                     if (Element.indexOf(data[id].Element) < 0) $(this).addClass("hide");
                 }
                 if (Burst.length > 0) {
-                    if (Burst.indexOf(data[id].Burst) < 0) $(this).addClass("hide");
+                    if (Burst.indexOf(data[id].Burst) < 0 && data[id].Burst != "p") $(this).addClass("hide");
                 }
                 if ($(this).hasClass("hide")) nikkes_count--;
             });
