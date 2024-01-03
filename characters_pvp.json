@@ -17,5 +17,8 @@
     },
     "Jackal": {
         "ChargePlus": true
+    },
+    "Scarlet: Black Shadow": {
+        "ChargeMultiple": 0.25
     }
 }

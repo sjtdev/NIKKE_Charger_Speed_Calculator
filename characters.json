@@ -58,6 +58,7 @@
     { "Name": "Rapunzel", "Name_cn": "长发公主", "Color": "#54AEB7", "ID": "221", "Manufacturer": "Pilgrim", "Squad": "Pioneer", "Weapon": "RL", "Class": "Supporter", "Element": "Iron", "Burst": "1" },
     { "Name": "Scarlet", "Name_cn": "红莲", "Color": "#785BB3", "ID": "222", "Manufacturer": "Pilgrim", "Squad": "Pioneer", "Weapon": "AR", "Class": "Attacker", "Element": "Electric", "Burst": "3" },
     { "Name": "Snow White: Innocent Days", "Name_cn": "白雪公主：纯真年代", "Color": "#D6D5EE", "ID": "224", "Manufacturer": "Pilgrim", "Squad": "Goddess", "Weapon": "AR", "Class": "Attacker", "Element": "Iron", "Burst": "3" },
+    { "Name": "Scarlet: Black Shadow", "Name_cn": "红莲：暗影", "Color": "#D6D5EE", "ID": "225", "Manufacturer": "Pilgrim", "Squad": "Goddess", "Weapon": "RL", "Class": "Attacker", "Element": "Wind", "Burst": "3" },
     { "Name": "Harran", "Name_cn": "哈兰", "Color": "#7C349C", "ID": "230", "Manufacturer": "Pilgrim", "Squad": "Inherit", "Weapon": "SR", "Class": "Attacker", "Element": "Electric", "Burst": "3" },
     { "Name": "Isabel", "Name_cn": "伊莎贝尔", "Color": "#4D4471", "ID": "231", "Manufacturer": "Pilgrim", "Squad": "Inherit", "Weapon": "SG", "Class": "Attacker", "Element": "Electric", "Burst": "3" },
     { "Name": "Noah", "Name_cn": "诺雅", "Color": "#DD7090", "ID": "232", "Manufacturer": "Pilgrim", "Squad": "Inherit", "Weapon": "RL", "Class": "Defender", "Element": "Wind", "Burst": "2" },
