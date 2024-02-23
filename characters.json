@@ -104,6 +104,7 @@
     { "Name": "Naga", "Name_cn": "娜嘉", "Color": "#A1908E", "ID": "450", "Manufacturer": "Missilis", "Squad": "Dazzling Pearl", "Weapon": "SG", "Class": "Supporter", "Element": "Electric", "Burst": "2" },
     { "Name": "Tia", "Name_cn": "蒂亚", "Color": "#E4D5CD", "ID": "451", "Manufacturer": "Missilis", "Squad": "Dazzling Pearl", "Weapon": "RL", "Class": "Defender", "Element": "Iron", "Burst": "1" },
     { "Name": "Red Hood", "Name_cn": "小红帽", "Color": "#DA1716", "ID": "470", "Manufacturer": "Pilgrim", "Squad": "Goddess", "Weapon": "SR", "Class": "Attacker", "Element": "Iron", "Burst": "p" },
+    { "Name": "Elegg", "Name_cn": "伊莱格", "Color": "#F6E140", "ID": "500", "Manufacturer": "Missilis", "Squad": "Electric Shock", "Weapon": "MG", "Class": "Supporter", "Element": "Electric", "Burst": "2" },
     { "Name": "Makima", "Name_cn": "玛奇玛", "Color": "#DF815F", "ID": "800", "Manufacturer": "Abnormal", "Squad": "Devil Hunter", "Weapon": "SMG", "Class": "Defender", "Element": "Water", "Burst": "2" },
     { "Name": "Power", "Name_cn": "帕瓦", "Color": "#CA2220", "ID": "801", "Manufacturer": "Abnormal", "Squad": "Devil Hunter", "Weapon": "RL", "Class": "Attacker", "Element": "Fire", "Burst": "3" },
     { "Name": "Himeno", "Name_cn": "姬野", "Color": "#709895", "ID": "802", "Manufacturer": "Abnormal", "Squad": "Devil Hunter", "Weapon": "SR", "Class": "Supporter", "Element": "Wind", "Burst": "2" },
