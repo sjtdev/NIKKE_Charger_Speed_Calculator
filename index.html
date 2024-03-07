@@ -150,245 +150,220 @@
         };
 
         let request = new XMLHttpRequest();
-        request.open("get", "./characters.json");
+        request.open("get", "./nikkes.json");
         request.send(null);
         request.onload = function () {
             let data1 = JSON.parse(request.responseText);
-            let new_data1 = {};
-            for (let n of data1) {
-                new_data1[n.ID] = n;
-            }
             let request2 = new XMLHttpRequest();
-            request2.open("get", "./characters_charging.json");
+            request2.open("get", "./nikkes_add.json");
             request2.send(null);
             request2.onload = function () {
                 let data2 = JSON.parse(request2.responseText);
-                let request3 = new XMLHttpRequest();
-                request3.open("get", "./characters_pvp.json");
-                request3.send(null);
-                request3.onload = function () {
-                    let data3 = JSON.parse(request3.responseText);
-                    let new_data2 = {};
-                    for (let n in new_data1) {
-                        new_data2[n] = new_data1[n];
-                        new_data2[n] = {
-                            Name: new_data1[n].Name,
-                            Color: new_data1[n].Color,
-                            ID: new_data1[n].ID,
-                            Manufacturer: new_data1[n].Manufacturer,
-                            Squad: new_data1[n].Squad,
-                            Weapon: new_data1[n].Weapon,
-                            Class: new_data1[n].Class,
-                            Element: new_data1[n].Element,
-                            Burst: new_data1[n].Burst,
-                            Charging: parseFloat(data2[new_data1[n].Name]),
-                        };
-                        if (new_data1[n].Name_cn) new_data2[n].Name_cn = new_data1[n].Name_cn;
-                        // if (new_data1[n].ChargePlus) new_data2[n].ChargePlus = new_data1[n].ChargePlus;
-                        if (data3[new_data1[n].Name]) {
-                            if (data3[new_data1[n].Name].AttactInterval) new_data2[n].AttactInterval = data3[new_data1[n].Name].AttactInterval;
-                            if (data3[new_data1[n].Name].ChargeMultiple) new_data2[n].ChargeMultiple = data3[new_data1[n].Name].ChargeMultiple;
-                            if (data3[new_data1[n].Name].ChargePlus) new_data2[n].ChargePlus = data3[new_data1[n].Name].ChargePlus;
-                        }
-                        new_data2[n].ChargingDisplay = Charging_Calculate(new_data2[n], 2.4);
-                    }
+                let new_data = {};
+                for (let i = 0; i < data1.length; i++) {
+                    let obj = {};
+                    Object.assign(obj, data1[i], data2[i]);
+                    obj.Charging = parseFloat(obj.Burst_Generation);
+                    delete obj.Burst_Generation;
+                    obj.ChargingDisplay = Charging_Calculate(obj, 2.4);
+                    new_data[obj.ID] = obj;
+                }
 
-                    window._data = new_data2;
-                    Refresh_NikkeList(new_data2);
+                window._data = new_data;
+                Refresh_NikkeList(new_data);
 
-                    $("#filters .option:not(#orders .option)").click(function () {
-                        $(this).toggleClass("active");
-                        $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
-                        let filter_manufacturers = [],
-                            filter_weapons = [],
-                            filter_classes = [],
-                            filter_elements = [],
-                            filter_bursts = [];
-                        $("#filters #manufacturers .option").each(function () {
-                            if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
-                        });
-                        $("#filters #weapons .option").each(function () {
-                            if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
-                        });
-                        $("#filters #classes .option").each(function () {
-                            if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
-                        });
-                        $("#filters #elements .option").each(function () {
-                            if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
-                        });
-                        $("#filters #bursts .option").each(function () {
-                            if (parseInt($(this).attr("data-selected"))) filter_bursts.push($(this).attr("id").substring(6));
-                        });
-                        Filted_Result(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
+                $("#filters .option:not(#orders .option)").click(function () {
+                    $(this).toggleClass("active");
+                    $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
+                    let filter_manufacturers = [],
+                        filter_weapons = [],
+                        filter_classes = [],
+                        filter_elements = [],
+                        filter_bursts = [];
+                    $("#filters #manufacturers .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
                     });
-                    $("#orders .option").click(function () {
-                        $(this).addClass("active");
-                        $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
-                        let click_order = $(this);
-                        $("#orders .option").each(function () {
-                            if (!click_order.is($(this))) $(this).removeClass("active").attr("data-selected", "0");
-                        });
-                        let arr = Object.values(window._data);
-                        if ($(this).is($("#by_id"))) {
-                            $(this)
-                                .children("span")
-                                .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-                            let compareID_ASC = function (a, b) {
-                                    if (parseInt(a.ID) > parseInt(b.ID)) return 1;
-                                    else if (parseInt(a.ID) < parseInt(b.ID)) return -1;
-                                    else return 0;
-                                },
-                                compareID_DESC = function (a, b) {
-                                    if (parseInt(a.ID) < parseInt(b.ID)) return 1;
-                                    else if (parseInt(a.ID) > parseInt(b.ID)) return -1;
-                                    else return 0;
-                                };
-                            arr.sort(parseInt($(this).attr("data-selected")) ? compareID_ASC : compareID_DESC);
-                        }
-                        if ($(this).is($("#by_charging"))) {
-                            $(this)
-                                .children("span")
-                                .text(parseInt($(this).attr("data-selected")) ? "↓" : "↑");
-                            let compareCharging_DESC = function (a, b) {
+                    $("#filters #weapons .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
+                    });
+                    $("#filters #classes .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
+                    });
+                    $("#filters #elements .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
+                    });
+                    $("#filters #bursts .option").each(function () {
+                        if (parseInt($(this).attr("data-selected"))) filter_bursts.push($(this).attr("id").substring(6));
+                    });
+                    Filted_Result(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
+                });
+                $("#orders .option").click(function () {
+                    $(this).addClass("active");
+                    $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
+                    let click_order = $(this);
+                    $("#orders .option").each(function () {
+                        if (!click_order.is($(this))) $(this).removeClass("active").attr("data-selected", "0");
+                    });
+                    let arr = Object.values(window._data);
+                    if ($(this).is($("#by_id"))) {
+                        $(this)
+                            .children("span")
+                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+                        let compareID_ASC = function (a, b) {
+                                if (parseInt(a.ID) > parseInt(b.ID)) return 1;
+                                else if (parseInt(a.ID) < parseInt(b.ID)) return -1;
+                                else return 0;
+                            },
+                            compareID_DESC = function (a, b) {
+                                if (parseInt(a.ID) < parseInt(b.ID)) return 1;
+                                else if (parseInt(a.ID) > parseInt(b.ID)) return -1;
+                                else return 0;
+                            };
+                        arr.sort(parseInt($(this).attr("data-selected")) ? compareID_ASC : compareID_DESC);
+                    }
+                    if ($(this).is($("#by_charging"))) {
+                        $(this)
+                            .children("span")
+                            .text(parseInt($(this).attr("data-selected")) ? "↓" : "↑");
+                        let compareCharging_DESC = function (a, b) {
+                                if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
+                                else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
+                                else return 0;
+                            },
+                            compareCharging_ASC = function (a, b) {
+                                if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return 1;
+                                else if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return -1;
+                                else return 0;
+                            };
+                        arr.sort(parseInt($(this).attr("data-selected")) ? compareCharging_DESC : compareCharging_ASC);
+                    }
+                    if ($(this).is($("#by_weapon"))) {
+                        $(this)
+                            .children("span")
+                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+                        let compareWeapon_ASC = function (a, b) {
+                                if (a.Weapon[0] < b.Weapon[0]) return 1;
+                                else if (a.Weapon[0] > b.Weapon[0]) return -1;
+                                else {
                                     if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
                                     else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
                                     else return 0;
-                                },
-                                compareCharging_ASC = function (a, b) {
-                                    if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return 1;
-                                    else if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return -1;
+                                }
+                            },
+                            compareWeapon_DESC = function (a, b) {
+                                if (a.Weapon[0] > b.Weapon[0]) return 1;
+                                else if (a.Weapon[0] < b.Weapon[0]) return -1;
+                                else {
+                                    if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
+                                    else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
                                     else return 0;
-                                };
-                            arr.sort(parseInt($(this).attr("data-selected")) ? compareCharging_DESC : compareCharging_ASC);
-                        }
-                        if ($(this).is($("#by_weapon"))) {
-                            $(this)
-                                .children("span")
-                                .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-                            let compareWeapon_ASC = function (a, b) {
-                                    if (a.Weapon[0] < b.Weapon[0]) return 1;
-                                    else if (a.Weapon[0] > b.Weapon[0]) return -1;
-                                    else {
-                                        if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
-                                        else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
-                                        else return 0;
-                                    }
-                                },
-                                compareWeapon_DESC = function (a, b) {
-                                    if (a.Weapon[0] > b.Weapon[0]) return 1;
-                                    else if (a.Weapon[0] < b.Weapon[0]) return -1;
-                                    else {
-                                        if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
-                                        else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
-                                        else return 0;
-                                    }
-                                };
-                            arr.sort(parseInt($(this).attr("data-selected")) ? compareWeapon_ASC : compareWeapon_DESC);
-                        }
-                        if ($(this).is($("#by_color"))) {
-                            $(this)
-                                .children("span")
-                                .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+                                }
+                            };
+                        arr.sort(parseInt($(this).attr("data-selected")) ? compareWeapon_ASC : compareWeapon_DESC);
+                    }
+                    if ($(this).is($("#by_color"))) {
+                        $(this)
+                            .children("span")
+                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
 
-                            let compareColor_ASC = function (a, b) {
-                                    let ac = hex2hsl(a.Color),
-                                        bc = hex2hsl(b.Color);
-                                    const gray_limit = 0.25,
-                                        wb_limit = 0.16;
+                        let compareColor_ASC = function (a, b) {
+                                let ac = hex2hsl(a.Color),
+                                    bc = hex2hsl(b.Color);
+                                const gray_limit = 0.25,
+                                    wb_limit = 0.16;
+                                if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
+                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
+                                        return ac[2] - bc[2];
+                                    } else return -1;
+                                } else if (ac[1] < gray_limit) {
+                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
+                                    else if (bc[1] < gray_limit) {
+                                        return ac[1] - bc[1];
+                                    } else return -1;
+                                } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
                                     if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                        if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                            return ac[2] - bc[2];
-                                        } else return -1;
-                                    } else if (ac[1] < gray_limit) {
-                                        if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
-                                        else if (bc[1] < gray_limit) {
-                                            return ac[1] - bc[1];
-                                        } else return -1;
-                                    } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                        if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                            return ac[2] - bc[2];
-                                        } else return 1;
-                                    } else if (bc[1] < gray_limit) {
-                                        if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
-                                        else if (ac[1] < gray_limit) {
-                                            return ac[1] - bc[1];
-                                        } else return 1;
-                                    } else {
-                                        return ac[0] - bc[0];
-                                    }
+                                        return ac[2] - bc[2];
+                                    } else return 1;
+                                } else if (bc[1] < gray_limit) {
+                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
+                                    else if (ac[1] < gray_limit) {
+                                        return ac[1] - bc[1];
+                                    } else return 1;
+                                } else {
+                                    return ac[0] - bc[0];
+                                }
 
-                                    // let ac = hex2hsl(b.Color),
-                                    //     bc = hex2hsl(a.Color);
-                                    // if (ac[0] < bc[0]) return 1;
-                                    // else if (ac[0] > bc[0]) return -1;
-                                    // else {
-                                    //     if (ac[1] < bc[1]) return 1;
-                                    //     else if (ac[1] > bc[1]) return -1;
-                                    //     else {
-                                    //         if (ac[2] < bc[2]) return 1;
-                                    //         else if (ac[2] > bc[2]) return -1;
-                                    //         else return 0;
-                                    //     }
-                                    // }
-                                },
-                                compareColor_DESC = function (a, b) {
-                                    let ac = hex2hsl(b.Color),
-                                        bc = hex2hsl(a.Color);
-                                    const gray_limit = 0.25,
-                                        wb_limit = 0.16;
+                                // let ac = hex2hsl(b.Color),
+                                //     bc = hex2hsl(a.Color);
+                                // if (ac[0] < bc[0]) return 1;
+                                // else if (ac[0] > bc[0]) return -1;
+                                // else {
+                                //     if (ac[1] < bc[1]) return 1;
+                                //     else if (ac[1] > bc[1]) return -1;
+                                //     else {
+                                //         if (ac[2] < bc[2]) return 1;
+                                //         else if (ac[2] > bc[2]) return -1;
+                                //         else return 0;
+                                //     }
+                                // }
+                            },
+                            compareColor_DESC = function (a, b) {
+                                let ac = hex2hsl(b.Color),
+                                    bc = hex2hsl(a.Color);
+                                const gray_limit = 0.25,
+                                    wb_limit = 0.16;
+                                if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
+                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
+                                        return ac[2] - bc[2];
+                                    } else return -1;
+                                } else if (ac[1] < gray_limit) {
+                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
+                                    else if (bc[1] < gray_limit) {
+                                        return ac[1] - bc[1];
+                                    } else return -1;
+                                } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
                                     if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                        if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                            return ac[2] - bc[2];
-                                        } else return -1;
-                                    } else if (ac[1] < gray_limit) {
-                                        if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
-                                        else if (bc[1] < gray_limit) {
-                                            return ac[1] - bc[1];
-                                        } else return -1;
-                                    } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                        if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                            return ac[2] - bc[2];
-                                        } else return 1;
-                                    } else if (bc[1] < gray_limit) {
-                                        if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
-                                        else if (ac[1] < gray_limit) {
-                                            return ac[1] - bc[1];
-                                        } else return 1;
-                                    } else {
-                                        return ac[0] - bc[0];
-                                    }
-                                    // let ac = hex2hsl(a.Color),
-                                    //     bc = hex2hsl(b.Color);
-                                    // if (ac[0] < bc[0]) return 1;
-                                    // else if (ac[0] > bc[0]) return -1;
-                                    // else {
-                                    //     if (ac[1] < bc[1]) return 1;
-                                    //     else if (ac[1] > bc[1]) return -1;
-                                    //     else {
-                                    //         if (ac[2] < bc[2]) return 1;
-                                    //         else if (ac[2] > bc[2]) return -1;
-                                    //         else return 0;
-                                    //     }
-                                    // }
-                                };
-                            arr.sort(parseInt($(this).attr("data-selected")) ? compareColor_ASC : compareColor_DESC);
-                        }
+                                        return ac[2] - bc[2];
+                                    } else return 1;
+                                } else if (bc[1] < gray_limit) {
+                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
+                                    else if (ac[1] < gray_limit) {
+                                        return ac[1] - bc[1];
+                                    } else return 1;
+                                } else {
+                                    return ac[0] - bc[0];
+                                }
+                                // let ac = hex2hsl(a.Color),
+                                //     bc = hex2hsl(b.Color);
+                                // if (ac[0] < bc[0]) return 1;
+                                // else if (ac[0] > bc[0]) return -1;
+                                // else {
+                                //     if (ac[1] < bc[1]) return 1;
+                                //     else if (ac[1] > bc[1]) return -1;
+                                //     else {
+                                //         if (ac[2] < bc[2]) return 1;
+                                //         else if (ac[2] > bc[2]) return -1;
+                                //         else return 0;
+                                //     }
+                                // }
+                            };
+                        arr.sort(parseInt($(this).attr("data-selected")) ? compareColor_ASC : compareColor_DESC);
+                    }
 
-                        let nikke_elements = {};
-                        let nikkes = $("#main>.nikke");
+                    let nikke_elements = {};
+                    let nikkes = $("#main>.nikke");
 
-                        nikkes.each(function () {
-                            nikke_elements[$(this).attr("data-id")] = $(this);
-                        });
-                        // console.log(xxx);
-                        let index = 0;
-                        for (let item of arr) {
-                            nikke_elements[item.ID].css("order", index++);
-                        }
+                    nikkes.each(function () {
+                        nikke_elements[$(this).attr("data-id")] = $(this);
                     });
-                    $("#chargingsheet>span:nth-child(7)").addClass("active");
-                    $("#by_id").click();
-                };
+                    // console.log(xxx);
+                    let index = 0;
+                    for (let item of arr) {
+                        nikke_elements[item.ID].css("order", index++);
+                    }
+                });
+                $("#chargingsheet>span:nth-child(7)").addClass("active");
+                $("#by_id").click();
             };
         };
         // Refresh_NikkeList(new_data);
