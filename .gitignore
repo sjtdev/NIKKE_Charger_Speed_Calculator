@@ -4,3 +4,4 @@ nodeapp.js
 git_push.bat
 node_modules
 package*
+.vscode
