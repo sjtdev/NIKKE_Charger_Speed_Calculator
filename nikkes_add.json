@@ -59,7 +59,7 @@
     { "ID": "221", "Name": "Rapunzel", "Name_cn": "长发公主", "Color": "#54AEB7" },
     { "ID": "222", "Name": "Scarlet", "Name_cn": "红莲", "Color": "#785BB3", "ChargePlus": true },
     { "ID": "224", "Name": "Snow White: Innocent Days", "Name_cn": "白雪公主：纯真年代", "Color": "#D6D5EE" },
-    { "ID": "225", "Name": "Scarlet: Black Shadow", "Name_cn": "红莲：暗影", "Color": "#D6D5EE", "ChargeMultiple": 0.25 },
+    { "ID": "225", "Name": "Scarlet: Black Shadow", "Name_cn": "红莲：暗影", "Color": "#D6D5EE", "ChargeMultiple": 2 },
     { "ID": "230", "Name": "Harran", "Name_cn": "哈兰", "Color": "#7C349C", "ChargeMultiple": 1.25 },
     { "ID": "231", "Name": "Isabel", "Name_cn": "伊莎贝尔", "Color": "#4D4471" },
     { "ID": "232", "Name": "Noah", "Name_cn": "诺雅", "Color": "#DD7090" },
@@ -113,6 +113,6 @@
     { "ID": "811", "Name": "A2", "Color": "#BEC2C5", "AttactInterval": 2.05, "ChargeMultiple": 9 },
     { "ID": "812", "Name": "Pascal", "Name_cn": "帕斯卡", "Color": "#7E6B60" },
     { "ID": "820", "Name": "Rem", "Name_cn": "雷姆", "Color": "#71B8FB" },
-    { "ID": "821", "Name": "Emilia", "Name_cn": "爱蜜莉雅", "Color": "#D594FF" },
+    { "ID": "821", "Name": "Emilia", "Name_cn": "爱蜜莉雅", "Color": "#D594FF", "ChargeMultiple": 9 },
     { "ID": "822", "Name": "Ram", "Name_cn": "拉姆", "Color": "#F77B9D" }
 ]
