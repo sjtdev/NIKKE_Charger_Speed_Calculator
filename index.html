@@ -265,89 +265,14 @@
                         $(this)
                             .children("span")
                             .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-
-                        let compareColor_ASC = function (a, b) {
-                                let ac = hex2hsl(a.Color),
-                                    bc = hex2hsl(b.Color);
-                                const gray_limit = 0.25,
-                                    wb_limit = 0.16;
-                                if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                        return ac[2] - bc[2];
-                                    } else return -1;
-                                } else if (ac[1] < gray_limit) {
-                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
-                                    else if (bc[1] < gray_limit) {
-                                        return ac[1] - bc[1];
-                                    } else return -1;
-                                } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                        return ac[2] - bc[2];
-                                    } else return 1;
-                                } else if (bc[1] < gray_limit) {
-                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
-                                    else if (ac[1] < gray_limit) {
-                                        return ac[1] - bc[1];
-                                    } else return 1;
-                                } else {
-                                    return ac[0] - bc[0];
-                                }
-
-                                // let ac = hex2hsl(b.Color),
-                                //     bc = hex2hsl(a.Color);
-                                // if (ac[0] < bc[0]) return 1;
-                                // else if (ac[0] > bc[0]) return -1;
-                                // else {
-                                //     if (ac[1] < bc[1]) return 1;
-                                //     else if (ac[1] > bc[1]) return -1;
-                                //     else {
-                                //         if (ac[2] < bc[2]) return 1;
-                                //         else if (ac[2] > bc[2]) return -1;
-                                //         else return 0;
-                                //     }
-                                // }
-                            },
-                            compareColor_DESC = function (a, b) {
-                                let ac = hex2hsl(b.Color),
-                                    bc = hex2hsl(a.Color);
-                                const gray_limit = 0.25,
-                                    wb_limit = 0.16;
-                                if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                        return ac[2] - bc[2];
-                                    } else return -1;
-                                } else if (ac[1] < gray_limit) {
-                                    if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) return 1;
-                                    else if (bc[1] < gray_limit) {
-                                        return ac[1] - bc[1];
-                                    } else return -1;
-                                } else if (bc[2] < wb_limit || bc[2] > 1 - wb_limit) {
-                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) {
-                                        return ac[2] - bc[2];
-                                    } else return 1;
-                                } else if (bc[1] < gray_limit) {
-                                    if (ac[2] < wb_limit || ac[2] > 1 - wb_limit) return -1;
-                                    else if (ac[1] < gray_limit) {
-                                        return ac[1] - bc[1];
-                                    } else return 1;
-                                } else {
-                                    return ac[0] - bc[0];
-                                }
-                                // let ac = hex2hsl(a.Color),
-                                //     bc = hex2hsl(b.Color);
-                                // if (ac[0] < bc[0]) return 1;
-                                // else if (ac[0] > bc[0]) return -1;
-                                // else {
-                                //     if (ac[1] < bc[1]) return 1;
-                                //     else if (ac[1] > bc[1]) return -1;
-                                //     else {
-                                //         if (ac[2] < bc[2]) return 1;
-                                //         else if (ac[2] > bc[2]) return -1;
-                                //         else return 0;
-                                //     }
-                                // }
-                            };
-                        arr.sort(parseInt($(this).attr("data-selected")) ? compareColor_ASC : compareColor_DESC);
+                        const compareColor = function (arr, ascending) {
+                            return arr.sort((a, b) => {
+                                const ah = hex2hsl(a.Color),
+                                    bh = hex2hsl(b.Color);
+                                return (ascending ? 1 : -1) * (ah[0] - bh[0] || ah[2] - bh[2]);
+                            });
+                        };
+                        compareColor(arr, parseInt($(this).attr("data-selected")));
                     }
 
                     let nikke_elements = {};
@@ -577,7 +502,7 @@
                 }
                 h /= 6;
             }
-            return [Math.round(h * 100) / 100, Math.round(s * 100) / 100, Math.round(l * 100) / 100];
+            return [Math.round(h * 360 * 100) / 100, Math.round(s * 100) / 100, Math.round(l * 100) / 100];
         }
     </script>
 </html>
