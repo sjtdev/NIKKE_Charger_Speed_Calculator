@@ -146,7 +146,6 @@
             SG: 0.6,
             SMG: 0.075,
             SR: 1.2,
-            Alice: 1.7,
         };
 
         let request = new XMLHttpRequest();
@@ -165,12 +164,12 @@
                     Object.assign(obj, data1[i], data2[i]);
                     obj.Charging = parseFloat(obj.Burst_Generation);
                     delete obj.Burst_Generation;
-                    obj.ChargingDisplay = Charging_Calculate(obj, 2.4);
+                    obj.ChargingDisplay = ChargingCalculate(obj, 2.4);
                     new_data[obj.ID] = obj;
                 }
 
                 window._data = new_data;
-                Refresh_NikkeList(new_data);
+                RefreshNikkeList(new_data);
 
                 $("#filters .option:not(#orders .option)").click(function () {
                     $(this).toggleClass("active");
@@ -195,7 +194,7 @@
                     $("#filters #bursts .option").each(function () {
                         if (parseInt($(this).attr("data-selected"))) filter_bursts.push($(this).attr("id").substring(6));
                     });
-                    Filted_Result(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
+                    FiltedResult(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
                 });
                 $("#orders .option").click(function () {
                     $(this).addClass("active");
@@ -265,10 +264,31 @@
                         $(this)
                             .children("span")
                             .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+
+                        const isGrayish = function (hsl) {
+                            const [h, s, l] = hsl;
+                            // 判断条件: 饱和度非常低或亮度非常高/低，认为是灰度色
+                            return (s < 0.15 && l > 0.8) || s < 0.1 || l > 0.9 || l < 0.1;
+                        };
+
                         const compareColor = function (arr, ascending) {
                             return arr.sort((a, b) => {
-                                const ah = hex2hsl(a.Color),
-                                    bh = hex2hsl(b.Color);
+                                const ah = hex2hsl(a.Color);
+                                const bh = hex2hsl(b.Color);
+
+                                const aIsGrayish = isGrayish(ah);
+                                const bIsGrayish = isGrayish(bh);
+
+                                // 若a或b是灰度色，将灰度色排序放在最后
+                                if (aIsGrayish && !bIsGrayish) return 1;
+                                if (!aIsGrayish && bIsGrayish) return -1;
+
+                                // 若两个颜色都为灰度色，则按亮度从黑到白排序
+                                if (aIsGrayish && bIsGrayish) {
+                                    return (ascending ? 1 : -1) * (ah[2] - bh[2]);
+                                }
+
+                                // 若都为彩色，则按色相和亮度排序
                                 return (ascending ? 1 : -1) * (ah[0] - bh[0] || ah[2] - bh[2]);
                             });
                         };
@@ -295,7 +315,7 @@
     </script>
 
     <script>
-        function Filted_Result(Manufacturer = [], Weapon = [], Class = [], Element = [], Burst = []) {
+        function FiltedResult(Manufacturer = [], Weapon = [], Class = [], Element = [], Burst = []) {
             let data = window._data;
             let nikkes = $("#main>.nikke");
             let nikkes_count = nikkes.length;
@@ -321,7 +341,7 @@
             });
             $("#cc_number").text(nikkes_count);
         }
-        function Refresh_NikkeList(new_data) {
+        function RefreshNikkeList(new_data) {
             let content = "";
             for (let n in new_data) {
                 let new_nikke = `<div class="nikke" data-id="${n}">
@@ -336,7 +356,7 @@
                     </p>
                     <p class="code">
                         <img src="./images/Code${CODE_REPLACER[new_data[n].Element]}_hexagon.webp">
-                        <span id="charging" class="${Charging_Show(new_data[n])}">${new_data[n].ChargingDisplay.toFixed(1) + (new_data[n].ChargePlus ? "+" : "")}</span>
+                        <span id="charging" class="${ChargingTimeStyle(new_data[n])}">${new_data[n].ChargingDisplay.toFixed(1) + (new_data[n].ChargePlus ? "+" : "")}</span>
                     </p>
                 </div>`;
                 content += new_nikke;
@@ -355,7 +375,7 @@
                         temp_nikke.click(function () {
                             let id = $(this).attr("data-id");
                             window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
-                            BurstTime_Calculate(window._selected_nikke);
+                            BurstTimeCalculate(window._selected_nikke);
                             $(this).remove();
                         });
                         $("#selected").append(temp_nikke);
@@ -365,7 +385,7 @@
                     $(`#selected>[data-id=${id}]`).remove();
                     window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
                 }
-                BurstTime_Calculate(window._selected_nikke);
+                BurstTimeCalculate(window._selected_nikke);
                 // console.log(count)
             });
             let padding_left_right = parseInt($(".nikke .name").css("padding-left").replace("px", "")) + parseInt($(".nikke .name").css("padding-right").replace("px", ""));
@@ -383,7 +403,7 @@
                 }
             });
         }
-        function BurstTime_Calculate(selected_nikke = []) {
+        function BurstTimeCalculate(selected_nikke = []) {
             const BURST_INTERVAL = 0.535;
             let count = 0.0;
             for (let n of selected_nikke) {
@@ -395,21 +415,8 @@
                 let temp_count = 0;
                 for (let n of selected_nikke) {
                     let nikke = window._data[n];
-                    let interval = nikke.AttactInterval ? nikke.AttactInterval : ATTACT_INTERVAL[nikke.Weapon];
-                    // H47 * (($K$46 - MOD($K$46, K47)) / K47) * 4;
-                    temp_count += Charging_Calculate(nikke, i);
-
-                    // switch (window._data[n].Weapon) {
-                    //     case "RL":
-                    //         temp_count += (parseFloat(window._data[n].Charging) / (RL_ATTACT_INTERVAL * 2)) * (i / RL_ATTACT_INTERVAL - (i % RL_ATTACT_INTERVAL) / RL_ATTACT_INTERVAL) * RL_ATTACT_INTERVAL;
-                    //         break;
-                    //     case "SG":
-                    //         temp_count += (parseFloat(window._data[n].Charging) / (RL_ATTACT_INTERVAL * 2)) * (i / SG_ATTACT_INTERVAL - (i % SG_ATTACT_INTERVAL) / SG_ATTACT_INTERVAL) * SG_ATTACT_INTERVAL;
-                    //         break;
-                    //     default:
-                    //         temp_count += (parseFloat(window._data[n].Charging) / (RL_ATTACT_INTERVAL * 2)) * i;
-                    //         break;
-                    // }
+                    let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
+                    temp_count += ChargingCalculate(nikke, i);
                 }
                 if (temp_count > 100) {
                     burst_time1 = Math.floor(i * 100) / 100;
@@ -439,38 +446,20 @@
                 $("#chargingsheet>span").removeClass("active");
                 $("#chargingsheet>span:nth-child(7)").text("选择阵容后此处预测爆裂就绪时间点。").addClass("active");
             }
-            //#region 旧版本
-            // if (count > 0) {
-            //     let per_charging = count / (RL_ATTACT_INTERVAL * 2);
-            //     let burst_time1 = 100 / per_charging;
-            //     let burst_time2 = burst_time1 + BURST_INTERVAL;
-            //     let burst_time3 = burst_time2 + BURST_INTERVAL;
-
-            //     $('#chargingsheet>span:nth-child(3n+1):not(:nth-child(7))').css('right', `${((6 - burst_time1) / 6 * 100).toFixed(2)}%`).children().text(`(${burst_time1.toFixed(2)}s)`);
-            //     $('#chargingsheet>span:nth-child(3n+2)').css('right', `${((6 - burst_time2) / 6 * 100).toFixed(2)}%`).children().text(`(${burst_time2.toFixed(2)}s)`);
-            //     $('#chargingsheet>span:nth-child(3n+3)').css('right', `${((6 - burst_time3) / 6 * 100).toFixed(2)}%`).children().text(`(${burst_time3.toFixed(2)}s)`);
-            //     if (burst_time1 > 6)
-            //         $('#chargingsheet>span:nth-child(7)').text('第一次爆裂在6秒以上').addClass('active');
-            //     else
-            //         $('#chargingsheet>span:nth-child(7)').removeClass('active');
-            //     $('#chargingsheet>span:not(:nth-child(7))').addClass('active');
-
-            // } else {
-            //     $('#chargingsheet>span').removeClass('active');
-            //     $('#chargingsheet>span:nth-child(7)').text('选择阵容后此处预测爆裂就绪时间点。').addClass('active');
-            // }
-            //#endregion
         }
-        function Charging_Show(nikke) {
+        function ChargingTimeStyle(nikke) {
             if (nikke.ChargingDisplay > 27) return "color1";
             else if (nikke.ChargingDisplay > 11) return "color2";
             else if (nikke.ChargingDisplay > 4) return "color3";
             else return "color4";
         }
 
-        function Charging_Calculate(nikke, time) {
-            let interval = nikke.AttactInterval ? nikke.AttactInterval : ATTACT_INTERVAL[nikke.Weapon];
-            return nikke.Charging * ((time - (time % interval)) / interval) * (nikke.ChargeMultiple ? nikke.ChargeMultiple : nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1);
+        function ChargingCalculate(nikke, time) {
+            let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
+            // let attack_count = nikke.FirstInterval ? (time > nikke.FirstInterval ? Math.floor((time - nikke.FirstInterval) / interval) + 1 : Math.floor(time / nikke.FirstInterval)) : Math.floor(time / interval);
+            let attack_count = Math.floor((time - (nikke.FirstInterval || 0)) / interval) + (nikke.FirstInterval && time > nikke.FirstInterval ? 1 : 0);
+            console.log(attack_count);
+            return nikke.Charging * attack_count * (nikke.ChargeMultiple ?? (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1));
         }
 
         function hex2hsl(hex) {
