@@ -64,7 +64,7 @@
     { "ID": "226", "Name": "Rapunzel: Pure Grace", "Name_cn": "长发公主：纯洁恩典", "Color": "#FFFFFF" },
     { "ID": "230", "Name": "Harran", "Name_cn": "哈兰", "Color": "#7C349C", "ChargeMultiple": 1.25 },
     { "ID": "231", "Name": "Isabel", "Name_cn": "伊莎贝尔", "Color": "#4D4471" },
-    { "ID": "232", "Name": "Noah", "Name_cn": "诺雅", "Color": "#DD7090" },
+    { "ID": "232", "Name": "Noah", "Name_cn": "诺雅", "Color": "#DD7090", "ChargeMultiple": 8 },
     { "ID": "233", "Name": "Dorothy", "Name_cn": "桃乐丝", "Color": "#CCBCCB" },
     { "ID": "240", "Name": "Rumani", "Name_cn": "鲁玛妮", "Color": "#28ADFF" },
     { "ID": "241", "Name": "Epinel", "Name_cn": "艾菲涅尔", "Color": "#4ED3CF" },
