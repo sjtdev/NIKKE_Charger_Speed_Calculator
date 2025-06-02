@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="reset.css" />
-        <title>Document</title>
-        <link rel="stylesheet" href="style.css" />
-        <script src="https://code.jquery.com/jquery-latest.js"></script>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+  </head>
 
-    <body>
-        <div id="chargingsheet" class="wrapper">
-            <span id="burst_tip1" class="tip_text">爆裂1<span></span></span>
-            <span id="burst_tip2" class="tip_text">爆裂2<span></span></span>
-            <span id="burst_tip3" class="tip_text">爆裂3<span></span></span>
-            <span id="burst_arrow1" class="tip_line">|</span>
-            <span id="burst_arrow2" class="tip_line">|</span>
-            <span id="burst_arrow3" class="tip_line">|</span>
-            <span style="position: relative; color: #fff; right: 0">选择阵容后此处预测爆裂就绪时间点。</span>
-            <div id="charging_line">
-                <div id="test1"><span>两发</span></div>
-                <div id="test2"><span>三发</span></div>
-                <div id="test3"><span>四发</span></div>
-                <div id="test4"><span>五发</span></div>
-            </div>
-        </div>
+  <body>
+    <div id="chargingsheet" class="wrapper">
+      <span id="burst_tip1" class="tip_text">爆裂1<span></span></span>
+      <span id="burst_tip2" class="tip_text">爆裂2<span></span></span>
+      <span id="burst_tip3" class="tip_text">爆裂3<span></span></span>
+      <span id="burst_arrow1" class="tip_line">|</span>
+      <span id="burst_arrow2" class="tip_line">|</span>
+      <span id="burst_arrow3" class="tip_line">|</span>
+      <span style="position: relative; color: #fff; right: 0">选择阵容后此处预测爆裂就绪时间点。</span>
+      <div id="charging_line">
+        <div id="test1"><span>两发</span></div>
+        <div id="test2"><span>三发</span></div>
+        <div id="test3"><span>四发</span></div>
+        <div id="test4"><span>五发</span></div>
+      </div>
+    </div>
 
-        <div id="selected" class="wrapper">
-            <!-- <div class="nikke" style="display: none;">
+    <div id="selected" class="wrapper">
+      <!-- <div class="nikke" style="display: none;">
             <p class="image"><img src="./images/si_c010_00_s.webp" alt=""></p>
             <p class="name">test</p>
             <p class="class">
@@ -38,313 +38,313 @@
             </p>
             <p class="code"> <img src="./images/Codeanmi_hexagon.webp"></p>
         </div> -->
+    </div>
+
+    <div id="filters">
+      <div id="manufacturers" class="options">
+        <div id="Elysion" class="option">
+          <img src="./images/Elysion_logo.webp" alt="Elysion" draggable="false" />
         </div>
-
-        <div id="filters">
-            <div id="manufacturers" class="options">
-                <div id="Elysion" class="option">
-                    <img src="./images/Elysion_logo.webp" alt="Elysion" draggable="false" />
-                </div>
-                <div id="Missilis" class="option">
-                    <img src="./images/Missilis_logo.webp" alt="Missilis" draggable="false" />
-                </div>
-                <div id="Tetra" class="option">
-                    <img src="./images/Tetra_logo.webp" alt="Tetra" draggable="false" />
-                </div>
-                <div id="Pilgrim" class="option">
-                    <img src="./images/Pilgrim_logo.webp" alt="Pilgrim" draggable="false" />
-                </div>
-                <div id="Abnormal" class="option">
-                    <img src="./images/Abnormal_logo.webp" alt="Abnormal" draggable="false" />
-                </div>
-            </div>
-            <div id="weapons" class="options">
-                <div id="AR" class="option">
-                    <img src="./images/Icn_weapon_ar.webp" alt="AR" draggable="false" />
-                </div>
-                <div id="MG" class="option">
-                    <img src="./images/Icn_weapon_mg.webp" alt="MG" draggable="false" />
-                </div>
-                <div id="RL" class="option">
-                    <img src="./images/Icn_weapon_rl.webp" alt="RL" draggable="false" />
-                </div>
-                <div id="SG" class="option">
-                    <img src="./images/Icn_weapon_sg.webp" alt="SG" draggable="false" />
-                </div>
-                <div id="SMG" class="option">
-                    <img src="./images/Icn_weapon_smg.webp" alt="SMG" draggable="false" />
-                </div>
-                <div id="SR" class="option">
-                    <img src="./images/Icn_weapon_sr.webp" alt="SR" draggable="false" />
-                </div>
-            </div>
-            <div id="classes" class="options">
-                <div id="Supporter" class="option">
-                    <img src="./images/icn_class_supporter.webp" alt="Supporter" draggable="false" />
-                </div>
-                <div id="Defender" class="option">
-                    <img src="./images/icn_class_defender.webp" alt="Defender" draggable="false" />
-                </div>
-                <div id="Attacker" class="option">
-                    <img src="./images/icn_class_attacker.webp" alt="Attacker" draggable="false" />
-                </div>
-            </div>
-            <div id="bursts" class="options">
-                <div id="burst_1" class="option">
-                    <img src="./images/icn_burst_1.webp" alt="burst_1" draggable="false" />
-                </div>
-                <div id="burst_2" class="option">
-                    <img src="./images/icn_burst_2.webp" alt="burst_2" draggable="false" />
-                </div>
-                <div id="burst_3" class="option">
-                    <img src="./images/icn_burst_3.webp" alt="burst_3" draggable="false" />
-                </div>
-            </div>
-            <div id="elements" class="options">
-                <div id="Fire" class="option">
-                    <img src="./images/Codehsta_hexagon.webp" alt="Fire" draggable="false" />
-                </div>
-                <div id="Water" class="option">
-                    <img src="./images/Codepsid_hexagon.webp" alt="Water" draggable="false" />
-                </div>
-                <div id="Electric" class="option">
-                    <img src="./images/Codezeus_hexagon.webp" alt="Electric" draggable="false" />
-                </div>
-                <div id="Iron" class="option">
-                    <img src="./images/Codedmtr_hexagon.webp" alt="Iron" draggable="false" />
-                </div>
-                <div id="Wind" class="option">
-                    <img src="./images/Codeanmi_hexagon.webp" alt="Wind" draggable="false" />
-                </div>
-            </div>
-            <div id="orders" class="options">
-                <div id="by_id" class="option">ID<span>↑</span></div>
-                <div id="by_charging" class="option">充速<span>↓</span></div>
-                <div id="by_weapon" class="option">武器<span>↓</span></div>
-                <div id="by_color" class="option">颜色<span>↑</span></div>
-                <div id="current_count"><span id="cc_number"></span></div>
-            </div>
+        <div id="Missilis" class="option">
+          <img src="./images/Missilis_logo.webp" alt="Missilis" draggable="false" />
         </div>
+        <div id="Tetra" class="option">
+          <img src="./images/Tetra_logo.webp" alt="Tetra" draggable="false" />
+        </div>
+        <div id="Pilgrim" class="option">
+          <img src="./images/Pilgrim_logo.webp" alt="Pilgrim" draggable="false" />
+        </div>
+        <div id="Abnormal" class="option">
+          <img src="./images/Abnormal_logo.webp" alt="Abnormal" draggable="false" />
+        </div>
+      </div>
+      <div id="weapons" class="options">
+        <div id="AR" class="option">
+          <img src="./images/Icn_weapon_ar.webp" alt="AR" draggable="false" />
+        </div>
+        <div id="MG" class="option">
+          <img src="./images/Icn_weapon_mg.webp" alt="MG" draggable="false" />
+        </div>
+        <div id="RL" class="option">
+          <img src="./images/Icn_weapon_rl.webp" alt="RL" draggable="false" />
+        </div>
+        <div id="SG" class="option">
+          <img src="./images/Icn_weapon_sg.webp" alt="SG" draggable="false" />
+        </div>
+        <div id="SMG" class="option">
+          <img src="./images/Icn_weapon_smg.webp" alt="SMG" draggable="false" />
+        </div>
+        <div id="SR" class="option">
+          <img src="./images/Icn_weapon_sr.webp" alt="SR" draggable="false" />
+        </div>
+      </div>
+      <div id="classes" class="options">
+        <div id="Supporter" class="option">
+          <img src="./images/icn_class_supporter.webp" alt="Supporter" draggable="false" />
+        </div>
+        <div id="Defender" class="option">
+          <img src="./images/icn_class_defender.webp" alt="Defender" draggable="false" />
+        </div>
+        <div id="Attacker" class="option">
+          <img src="./images/icn_class_attacker.webp" alt="Attacker" draggable="false" />
+        </div>
+      </div>
+      <div id="bursts" class="options">
+        <div id="burst_1" class="option">
+          <img src="./images/icn_burst_1.webp" alt="burst_1" draggable="false" />
+        </div>
+        <div id="burst_2" class="option">
+          <img src="./images/icn_burst_2.webp" alt="burst_2" draggable="false" />
+        </div>
+        <div id="burst_3" class="option">
+          <img src="./images/icn_burst_3.webp" alt="burst_3" draggable="false" />
+        </div>
+      </div>
+      <div id="elements" class="options">
+        <div id="Fire" class="option">
+          <img src="./images/Codehsta_hexagon.webp" alt="Fire" draggable="false" />
+        </div>
+        <div id="Water" class="option">
+          <img src="./images/Codepsid_hexagon.webp" alt="Water" draggable="false" />
+        </div>
+        <div id="Electric" class="option">
+          <img src="./images/Codezeus_hexagon.webp" alt="Electric" draggable="false" />
+        </div>
+        <div id="Iron" class="option">
+          <img src="./images/Codedmtr_hexagon.webp" alt="Iron" draggable="false" />
+        </div>
+        <div id="Wind" class="option">
+          <img src="./images/Codeanmi_hexagon.webp" alt="Wind" draggable="false" />
+        </div>
+      </div>
+      <div id="orders" class="options">
+        <div id="by_id" class="option">ID<span>↑</span></div>
+        <div id="by_charging" class="option">充速<span>↓</span></div>
+        <div id="by_weapon" class="option">武器<span>↓</span></div>
+        <div id="by_color" class="option">颜色<span>↑</span></div>
+        <div id="current_count"><span id="cc_number"></span></div>
+      </div>
+    </div>
 
-        <div id="main" class="wrapper"></div>
-    </body>
-    <script>
-        window._selected_nikke = [];
+    <div id="main" class="wrapper"></div>
+  </body>
+  <script>
+    window._selected_nikke = [];
 
-        const CODE_REPLACER = {
-            Fire: "hsta",
-            Water: "psid",
-            Electric: "zeus",
-            Iron: "dmtr",
-            Wind: "anmi",
-        };
+    const CODE_REPLACER = {
+      Fire: "hsta",
+      Water: "psid",
+      Electric: "zeus",
+      Iron: "dmtr",
+      Wind: "anmi",
+    };
 
-        const ATTACT_INTERVAL = {
-            AR: 1 / (21 / 2.4) - 0.001,
-            MG: 1 / (35 / 2.4),
-            RL: 1.2,
-            SG: 0.6,
-            SMG: 0.075,
-            SR: 1.2,
-        };
+    const ATTACT_INTERVAL = {
+      AR: 1 / (21 / 2.4) - 0.001,
+      MG: 1 / (35 / 2.4),
+      RL: 1.2,
+      SG: 0.6,
+      SMG: 0.075,
+      SR: 1.2,
+    };
 
-        let request = new XMLHttpRequest();
-        request.open("get", "./nikkes.json");
-        request.send(null);
-        request.onload = function () {
-            let data1 = JSON.parse(request.responseText);
-            let request2 = new XMLHttpRequest();
-            request2.open("get", "./nikkes_add.json");
-            request2.send(null);
-            request2.onload = function () {
-                let data2 = JSON.parse(request2.responseText);
-                let new_data = {};
-                for (let i = 0; i < data1.length; i++) {
-                    let obj = {};
-                    Object.assign(obj, data1[i], data2[i]);
-                    obj.Charging = parseFloat(obj.Burst_Generation);
-                    delete obj.Burst_Generation;
-                    obj.ChargingDisplay = ChargingCalculate(obj, 2.4);
-                    new_data[obj.ID] = obj;
-                }
-
-                window._data = new_data;
-                RefreshNikkeList(new_data);
-
-                $("#filters .option:not(#orders .option)").click(function () {
-                    $(this).toggleClass("active");
-                    $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
-                    let filter_manufacturers = [],
-                        filter_weapons = [],
-                        filter_classes = [],
-                        filter_elements = [],
-                        filter_bursts = [];
-                    $("#filters #manufacturers .option").each(function () {
-                        if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
-                    });
-                    $("#filters #weapons .option").each(function () {
-                        if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
-                    });
-                    $("#filters #classes .option").each(function () {
-                        if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
-                    });
-                    $("#filters #elements .option").each(function () {
-                        if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
-                    });
-                    $("#filters #bursts .option").each(function () {
-                        if (parseInt($(this).attr("data-selected"))) filter_bursts.push($(this).attr("id").substring(6));
-                    });
-                    FiltedResult(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
-                });
-                $("#orders .option").click(function () {
-                    $(this).addClass("active");
-                    $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
-                    let click_order = $(this);
-                    $("#orders .option").each(function () {
-                        if (!click_order.is($(this))) $(this).removeClass("active").attr("data-selected", "0");
-                    });
-                    let arr = Object.values(window._data);
-                    if ($(this).is($("#by_id"))) {
-                        $(this)
-                            .children("span")
-                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-                        let compareID_ASC = function (a, b) {
-                                if (parseInt(a.ID) > parseInt(b.ID)) return 1;
-                                else if (parseInt(a.ID) < parseInt(b.ID)) return -1;
-                                else return 0;
-                            },
-                            compareID_DESC = function (a, b) {
-                                if (parseInt(a.ID) < parseInt(b.ID)) return 1;
-                                else if (parseInt(a.ID) > parseInt(b.ID)) return -1;
-                                else return 0;
-                            };
-                        arr.sort(parseInt($(this).attr("data-selected")) ? compareID_ASC : compareID_DESC);
-                    }
-                    if ($(this).is($("#by_charging"))) {
-                        $(this)
-                            .children("span")
-                            .text(parseInt($(this).attr("data-selected")) ? "↓" : "↑");
-                        let compareCharging_DESC = function (a, b) {
-                                if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
-                                else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
-                                else return 0;
-                            },
-                            compareCharging_ASC = function (a, b) {
-                                if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return 1;
-                                else if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return -1;
-                                else return 0;
-                            };
-                        arr.sort(parseInt($(this).attr("data-selected")) ? compareCharging_DESC : compareCharging_ASC);
-                    }
-                    if ($(this).is($("#by_weapon"))) {
-                        $(this)
-                            .children("span")
-                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-                        let compareWeapon_ASC = function (a, b) {
-                                if (a.Weapon[0] < b.Weapon[0]) return 1;
-                                else if (a.Weapon[0] > b.Weapon[0]) return -1;
-                                else {
-                                    if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
-                                    else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
-                                    else return 0;
-                                }
-                            },
-                            compareWeapon_DESC = function (a, b) {
-                                if (a.Weapon[0] > b.Weapon[0]) return 1;
-                                else if (a.Weapon[0] < b.Weapon[0]) return -1;
-                                else {
-                                    if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
-                                    else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
-                                    else return 0;
-                                }
-                            };
-                        arr.sort(parseInt($(this).attr("data-selected")) ? compareWeapon_ASC : compareWeapon_DESC);
-                    }
-                    if ($(this).is($("#by_color"))) {
-                        $(this)
-                            .children("span")
-                            .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
-
-                        const isGrayish = function (hsl) {
-                            const [h, s, l] = hsl;
-                            // 判断条件: 饱和度非常低或亮度非常高/低，认为是灰度色
-                            return (s < 0.15 && l > 0.8) || s < 0.1 || l > 0.9 || l < 0.1;
-                        };
-
-                        const compareColor = function (arr, ascending) {
-                            return arr.sort((a, b) => {
-                                const ah = hex2hsl(a.Color);
-                                const bh = hex2hsl(b.Color);
-
-                                const aIsGrayish = isGrayish(ah);
-                                const bIsGrayish = isGrayish(bh);
-
-                                // 若a或b是灰度色，将灰度色排序放在最后
-                                if (aIsGrayish && !bIsGrayish) return 1;
-                                if (!aIsGrayish && bIsGrayish) return -1;
-
-                                // 若两个颜色都为灰度色，则按亮度从黑到白排序
-                                if (aIsGrayish && bIsGrayish) {
-                                    return (ascending ? 1 : -1) * (ah[2] - bh[2]);
-                                }
-
-                                // 若都为彩色，则按色相和亮度排序
-                                return (ascending ? 1 : -1) * (ah[0] - bh[0] || ah[2] - bh[2]);
-                            });
-                        };
-                        compareColor(arr, parseInt($(this).attr("data-selected")));
-                    }
-
-                    let nikke_elements = {};
-                    let nikkes = $("#main>.nikke");
-
-                    nikkes.each(function () {
-                        nikke_elements[$(this).attr("data-id")] = $(this);
-                    });
-                    // console.log(xxx);
-                    let index = 0;
-                    for (let item of arr) {
-                        nikke_elements[item.ID].css("order", index++);
-                    }
-                });
-                $("#chargingsheet>span:nth-child(7)").addClass("active");
-                $("#by_id").click();
-            };
-        };
-        // Refresh_NikkeList(new_data);
-    </script>
-
-    <script>
-        function FiltedResult(Manufacturer = [], Weapon = [], Class = [], Element = [], Burst = []) {
-            let data = window._data;
-            let nikkes = $("#main>.nikke");
-            let nikkes_count = nikkes.length;
-            nikkes.each(function () {
-                $(this).removeClass("hide");
-                let id = $(this).attr("data-id");
-                if (Manufacturer.length > 0) {
-                    if (Manufacturer.indexOf(data[id].Manufacturer) < 0) $(this).addClass("hide");
-                }
-                if (Weapon.length > 0) {
-                    if (Weapon.indexOf(data[id].Weapon) < 0) $(this).addClass("hide");
-                }
-                if (Class.length > 0) {
-                    if (Class.indexOf(data[id].Class) < 0) $(this).addClass("hide");
-                }
-                if (Element.length > 0) {
-                    if (Element.indexOf(data[id].Element) < 0) $(this).addClass("hide");
-                }
-                if (Burst.length > 0) {
-                    if (Burst.indexOf(data[id].Burst) < 0 && data[id].Burst != "p") $(this).addClass("hide");
-                }
-                if ($(this).hasClass("hide")) nikkes_count--;
-            });
-            $("#cc_number").text(nikkes_count);
+    let request = new XMLHttpRequest();
+    request.open("get", "./nikkes.json");
+    request.send(null);
+    request.onload = function () {
+      let data1 = JSON.parse(request.responseText);
+      let request2 = new XMLHttpRequest();
+      request2.open("get", "./nikkes_add.json");
+      request2.send(null);
+      request2.onload = function () {
+        let data2 = JSON.parse(request2.responseText);
+        let new_data = {};
+        for (let i = 0; i < data1.length; i++) {
+          let obj = {};
+          Object.assign(obj, data1[i], data2[i]);
+          obj.Charging = parseFloat(obj.Burst_Generation);
+          delete obj.Burst_Generation;
+          obj.ChargingDisplay = ChargingCalculate(obj, 2.4);
+          new_data[obj.ID] = obj;
         }
-        function RefreshNikkeList(new_data) {
-            let content = "";
-            for (let n in new_data) {
-                let new_nikke = `<div class="nikke" data-id="${n}">
+
+        window._data = new_data;
+        RefreshNikkeList(new_data);
+
+        $("#filters .option:not(#orders .option)").click(function () {
+          $(this).toggleClass("active");
+          $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
+          let filter_manufacturers = [],
+            filter_weapons = [],
+            filter_classes = [],
+            filter_elements = [],
+            filter_bursts = [];
+          $("#filters #manufacturers .option").each(function () {
+            if (parseInt($(this).attr("data-selected"))) filter_manufacturers.push($(this).attr("id"));
+          });
+          $("#filters #weapons .option").each(function () {
+            if (parseInt($(this).attr("data-selected"))) filter_weapons.push($(this).attr("id"));
+          });
+          $("#filters #classes .option").each(function () {
+            if (parseInt($(this).attr("data-selected"))) filter_classes.push($(this).attr("id"));
+          });
+          $("#filters #elements .option").each(function () {
+            if (parseInt($(this).attr("data-selected"))) filter_elements.push($(this).attr("id"));
+          });
+          $("#filters #bursts .option").each(function () {
+            if (parseInt($(this).attr("data-selected"))) filter_bursts.push($(this).attr("id").substring(6));
+          });
+          FiltedResult(filter_manufacturers, filter_weapons, filter_classes, filter_elements, filter_bursts);
+        });
+        $("#orders .option").click(function () {
+          $(this).addClass("active");
+          $(this).attr("data-selected", parseInt($(this).attr("data-selected")) ? 0 : 1);
+          let click_order = $(this);
+          $("#orders .option").each(function () {
+            if (!click_order.is($(this))) $(this).removeClass("active").attr("data-selected", "0");
+          });
+          let arr = Object.values(window._data);
+          if ($(this).is($("#by_id"))) {
+            $(this)
+              .children("span")
+              .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+            let compareID_ASC = function (a, b) {
+                if (parseInt(a.ID) > parseInt(b.ID)) return 1;
+                else if (parseInt(a.ID) < parseInt(b.ID)) return -1;
+                else return 0;
+              },
+              compareID_DESC = function (a, b) {
+                if (parseInt(a.ID) < parseInt(b.ID)) return 1;
+                else if (parseInt(a.ID) > parseInt(b.ID)) return -1;
+                else return 0;
+              };
+            arr.sort(parseInt($(this).attr("data-selected")) ? compareID_ASC : compareID_DESC);
+          }
+          if ($(this).is($("#by_charging"))) {
+            $(this)
+              .children("span")
+              .text(parseInt($(this).attr("data-selected")) ? "↓" : "↑");
+            let compareCharging_DESC = function (a, b) {
+                if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
+                else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
+                else return 0;
+              },
+              compareCharging_ASC = function (a, b) {
+                if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return 1;
+                else if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return -1;
+                else return 0;
+              };
+            arr.sort(parseInt($(this).attr("data-selected")) ? compareCharging_DESC : compareCharging_ASC);
+          }
+          if ($(this).is($("#by_weapon"))) {
+            $(this)
+              .children("span")
+              .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+            let compareWeapon_ASC = function (a, b) {
+                if (a.Weapon[0] < b.Weapon[0]) return 1;
+                else if (a.Weapon[0] > b.Weapon[0]) return -1;
+                else {
+                  if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
+                  else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
+                  else return 0;
+                }
+              },
+              compareWeapon_DESC = function (a, b) {
+                if (a.Weapon[0] > b.Weapon[0]) return 1;
+                else if (a.Weapon[0] < b.Weapon[0]) return -1;
+                else {
+                  if (parseFloat(a.ChargingDisplay) < parseFloat(b.ChargingDisplay)) return 1;
+                  else if (parseFloat(a.ChargingDisplay) > parseFloat(b.ChargingDisplay)) return -1;
+                  else return 0;
+                }
+              };
+            arr.sort(parseInt($(this).attr("data-selected")) ? compareWeapon_ASC : compareWeapon_DESC);
+          }
+          if ($(this).is($("#by_color"))) {
+            $(this)
+              .children("span")
+              .text(parseInt($(this).attr("data-selected")) ? "↑" : "↓");
+
+            const isGrayish = function (hsl) {
+              const [h, s, l] = hsl;
+              // 判断条件: 饱和度非常低或亮度非常高/低，认为是灰度色
+              return (s < 0.15 && l > 0.8) || s < 0.1 || l > 0.9 || l < 0.1;
+            };
+
+            const compareColor = function (arr, ascending) {
+              return arr.sort((a, b) => {
+                const ah = hex2hsl(a.Color);
+                const bh = hex2hsl(b.Color);
+
+                const aIsGrayish = isGrayish(ah);
+                const bIsGrayish = isGrayish(bh);
+
+                // 若a或b是灰度色，将灰度色排序放在最后
+                if (aIsGrayish && !bIsGrayish) return 1;
+                if (!aIsGrayish && bIsGrayish) return -1;
+
+                // 若两个颜色都为灰度色，则按亮度从黑到白排序
+                if (aIsGrayish && bIsGrayish) {
+                  return (ascending ? 1 : -1) * (ah[2] - bh[2]);
+                }
+
+                // 若都为彩色，则按色相和亮度排序
+                return (ascending ? 1 : -1) * (ah[0] - bh[0] || ah[2] - bh[2]);
+              });
+            };
+            compareColor(arr, parseInt($(this).attr("data-selected")));
+          }
+
+          let nikke_elements = {};
+          let nikkes = $("#main>.nikke");
+
+          nikkes.each(function () {
+            nikke_elements[$(this).attr("data-id")] = $(this);
+          });
+          // console.log(xxx);
+          let index = 0;
+          for (let item of arr) {
+            nikke_elements[item.ID].css("order", index++);
+          }
+        });
+        $("#chargingsheet>span:nth-child(7)").addClass("active");
+        $("#by_id").click();
+      };
+    };
+    // Refresh_NikkeList(new_data);
+  </script>
+
+  <script>
+    function FiltedResult(Manufacturer = [], Weapon = [], Class = [], Element = [], Burst = []) {
+      let data = window._data;
+      let nikkes = $("#main>.nikke");
+      let nikkes_count = nikkes.length;
+      nikkes.each(function () {
+        $(this).removeClass("hide");
+        let id = $(this).attr("data-id");
+        if (Manufacturer.length > 0) {
+          if (Manufacturer.indexOf(data[id].Manufacturer) < 0) $(this).addClass("hide");
+        }
+        if (Weapon.length > 0) {
+          if (Weapon.indexOf(data[id].Weapon) < 0) $(this).addClass("hide");
+        }
+        if (Class.length > 0) {
+          if (Class.indexOf(data[id].Class) < 0) $(this).addClass("hide");
+        }
+        if (Element.length > 0) {
+          if (Element.indexOf(data[id].Element) < 0) $(this).addClass("hide");
+        }
+        if (Burst.length > 0) {
+          if (Burst.indexOf(data[id].Burst) < 0 && data[id].Burst != "p") $(this).addClass("hide");
+        }
+        if ($(this).hasClass("hide")) nikkes_count--;
+      });
+      $("#cc_number").text(nikkes_count);
+    }
+    function RefreshNikkeList(new_data) {
+      let content = "";
+      for (let n in new_data) {
+        let new_nikke = `<div class="nikke" data-id="${n}">
                     <p class="image"><img src="./images/si_c${n}_00_s.webp" draggable="false"></p>
                     <p class="name" style="background:linear-gradient(to top, ${new_data[n].Color}, rgba(0, 0, 0, 0))">
                         <span>${new_data[n].Name_cn ? new_data[n].Name_cn : new_data[n].Name}</span>
@@ -359,139 +359,139 @@
                         <span id="charging" class="${ChargingTimeStyle(new_data[n])}">${new_data[n].ChargingDisplay.toFixed(1) + (new_data[n].ChargePlus ? "+" : "")}</span>
                     </p>
                 </div>`;
-                content += new_nikke;
-            }
-            // $('#test .name').text(data.length + "/87")
-            $("#main").html(content);
-            $("#cc_number").text(Object.keys(new_data).length);
-            console.log();
-            $("#main .nikke").click(function () {
-                let id = $(this).attr("data-id");
+        content += new_nikke;
+      }
+      // $('#test .name').text(data.length + "/87")
+      $("#main").html(content);
+      $("#cc_number").text(Object.keys(new_data).length);
+      console.log();
+      $("#main .nikke").click(function () {
+        let id = $(this).attr("data-id");
 
-                if (!window._data[id].Charging) return;
-                if (window._selected_nikke.indexOf(id) < 0) {
-                    if (window._selected_nikke.length < 5) {
-                        let temp_nikke = $(this).clone().css("order", "");
-                        temp_nikke.click(function () {
-                            let id = $(this).attr("data-id");
-                            window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
-                            BurstTimeCalculate(window._selected_nikke);
-                            $(this).remove();
-                        });
-                        $("#selected").append(temp_nikke);
-                        window._selected_nikke.push(id);
-                    }
-                } else {
-                    $(`#selected>[data-id=${id}]`).remove();
-                    window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
-                }
-                BurstTimeCalculate(window._selected_nikke);
-                // console.log(count)
+        if (!window._data[id].Charging) return;
+        if (window._selected_nikke.indexOf(id) < 0) {
+          if (window._selected_nikke.length < 5) {
+            let temp_nikke = $(this).clone().css("order", "");
+            temp_nikke.click(function () {
+              let id = $(this).attr("data-id");
+              window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
+              BurstTimeCalculate(window._selected_nikke);
+              $(this).remove();
             });
-            let padding_left_right = parseInt($(".nikke .name").css("padding-left").replace("px", "")) + parseInt($(".nikke .name").css("padding-right").replace("px", ""));
-            let name_width_limit = parseInt($(".nikke .name").css("width").replace("px", "")) - padding_left_right;
-            // console.log(name_width_limit)
-            $(".nikke .name").each(function () {
-                let text_length = parseInt($(this).children("span").css("width"));
-                if (text_length > name_width_limit) {
-                    $(this)
-                        .children("span")[0]
-                        .animate([{ left: "0px", offset: 0 }, { left: 0 - text_length - padding_left_right + "px", offset: 0.5 }, { left: text_length + padding_left_right + "px", offset: 0.5 }, { left: "0px" }], {
-                            duration: 12000,
-                            iterations: Infinity,
-                        });
-                }
+            $("#selected").append(temp_nikke);
+            window._selected_nikke.push(id);
+          }
+        } else {
+          $(`#selected>[data-id=${id}]`).remove();
+          window._selected_nikke.splice(window._selected_nikke.indexOf(id), 1);
+        }
+        BurstTimeCalculate(window._selected_nikke);
+        // console.log(count)
+      });
+      let padding_left_right = parseInt($(".nikke .name").css("padding-left").replace("px", "")) + parseInt($(".nikke .name").css("padding-right").replace("px", ""));
+      let name_width_limit = parseInt($(".nikke .name").css("width").replace("px", "")) - padding_left_right;
+      // console.log(name_width_limit)
+      $(".nikke .name").each(function () {
+        let text_length = parseInt($(this).children("span").css("width"));
+        if (text_length > name_width_limit) {
+          $(this)
+            .children("span")[0]
+            .animate([{ left: "0px", offset: 0 }, { left: 0 - text_length - padding_left_right + "px", offset: 0.5 }, { left: text_length + padding_left_right + "px", offset: 0.5 }, { left: "0px" }], {
+              duration: 12000,
+              iterations: Infinity,
             });
         }
-        function BurstTimeCalculate(selected_nikke = []) {
-            const BURST_INTERVAL = 0.535;
-            let count = 0.0;
-            for (let n of selected_nikke) {
-                count += parseFloat(window._data[n].Charging);
-            }
-            let burst_time1 = 10;
+      });
+    }
+    function BurstTimeCalculate(selected_nikke = []) {
+      const BURST_INTERVAL = 0.535;
+      let count = 0.0;
+      for (let n of selected_nikke) {
+        count += parseFloat(window._data[n].Charging);
+      }
+      let burst_time1 = 10;
 
-            for (let i = 0; i < 6; i += 0.1) {
-                let temp_count = 0;
-                for (let n of selected_nikke) {
-                    let nikke = window._data[n];
-                    let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
-                    temp_count += ChargingCalculate(nikke, i);
-                }
-                if (temp_count > 100) {
-                    burst_time1 = Math.floor(i * 100) / 100;
-                    break;
-                }
-            }
-            console.log(burst_time1);
-            let burst_time2 = burst_time1 + BURST_INTERVAL;
-            let burst_time3 = burst_time2 + BURST_INTERVAL;
-            if (count > 0) {
-                $("#chargingsheet>span:nth-child(3n+1):not(:nth-child(7))")
-                    .css("right", `${(((6 - burst_time1) / 6) * 100).toFixed(2)}%`)
-                    .children()
-                    .text(`(${burst_time1.toFixed(2)}s)`);
-                $("#chargingsheet>span:nth-child(3n+2)")
-                    .css("right", `${(((6 - burst_time2) / 6) * 100).toFixed(2)}%`)
-                    .children()
-                    .text(`(${burst_time2.toFixed(2)}s)`);
-                $("#chargingsheet>span:nth-child(3n+3)")
-                    .css("right", `${(((6 - burst_time3) / 6) * 100).toFixed(2)}%`)
-                    .children()
-                    .text(`(${burst_time3.toFixed(2)}s)`);
-                if (burst_time1 > 6) $("#chargingsheet>span:nth-child(7)").text("第一次爆裂在五发以上").addClass("active");
-                else $("#chargingsheet>span:nth-child(7)").removeClass("active");
-                $("#chargingsheet>span:not(:nth-child(7))").addClass("active");
-            } else {
-                $("#chargingsheet>span").removeClass("active");
-                $("#chargingsheet>span:nth-child(7)").text("选择阵容后此处预测爆裂就绪时间点。").addClass("active");
-            }
+      for (let i = 0; i < 6; i += 0.1) {
+        let temp_count = 0;
+        for (let n of selected_nikke) {
+          let nikke = window._data[n];
+          let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
+          temp_count += ChargingCalculate(nikke, i);
         }
-        function ChargingTimeStyle(nikke) {
-            if (nikke.ChargingDisplay > 27) return "color1";
-            else if (nikke.ChargingDisplay > 11) return "color2";
-            else if (nikke.ChargingDisplay > 4) return "color3";
-            else return "color4";
+        if (temp_count > 100) {
+          burst_time1 = Math.floor(i * 100) / 100;
+          break;
         }
+      }
+      console.log(burst_time1);
+      let burst_time2 = burst_time1 + BURST_INTERVAL;
+      let burst_time3 = burst_time2 + BURST_INTERVAL;
+      if (count > 0) {
+        $("#chargingsheet>span:nth-child(3n+1):not(:nth-child(7))")
+          .css("right", `${(((6 - burst_time1) / 6) * 100).toFixed(2)}%`)
+          .children()
+          .text(`(${burst_time1.toFixed(2)}s)`);
+        $("#chargingsheet>span:nth-child(3n+2)")
+          .css("right", `${(((6 - burst_time2) / 6) * 100).toFixed(2)}%`)
+          .children()
+          .text(`(${burst_time2.toFixed(2)}s)`);
+        $("#chargingsheet>span:nth-child(3n+3)")
+          .css("right", `${(((6 - burst_time3) / 6) * 100).toFixed(2)}%`)
+          .children()
+          .text(`(${burst_time3.toFixed(2)}s)`);
+        if (burst_time1 > 6) $("#chargingsheet>span:nth-child(7)").text("第一次爆裂在五发以上").addClass("active");
+        else $("#chargingsheet>span:nth-child(7)").removeClass("active");
+        $("#chargingsheet>span:not(:nth-child(7))").addClass("active");
+      } else {
+        $("#chargingsheet>span").removeClass("active");
+        $("#chargingsheet>span:nth-child(7)").text("选择阵容后此处预测爆裂就绪时间点。").addClass("active");
+      }
+    }
+    function ChargingTimeStyle(nikke) {
+      if (nikke.ChargingDisplay > 27) return "color1";
+      else if (nikke.ChargingDisplay > 11) return "color2";
+      else if (nikke.ChargingDisplay > 4) return "color3";
+      else return "color4";
+    }
 
-        function ChargingCalculate(nikke, time) {
-            let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
-            // let attack_count = nikke.FirstInterval ? (time > nikke.FirstInterval ? Math.floor((time - nikke.FirstInterval) / interval) + 1 : Math.floor(time / nikke.FirstInterval)) : Math.floor(time / interval);
-            let attack_count = Math.floor((time - (nikke.FirstInterval || 0)) / interval) + (nikke.FirstInterval && time > nikke.FirstInterval ? 1 : 0);
-            console.log(attack_count);
-            return nikke.Charging * attack_count * (nikke.ChargeMultiple ?? (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1));
-        }
+    function ChargingCalculate(nikke, time) {
+      let interval = nikke.AttactInterval ?? ATTACT_INTERVAL[nikke.Weapon];
+      // let attack_count = nikke.FirstInterval ? (time > nikke.FirstInterval ? Math.floor((time - nikke.FirstInterval) / interval) + 1 : Math.floor(time / nikke.FirstInterval)) : Math.floor(time / interval);
+      let attack_count = Math.floor((time - (nikke.FirstInterval || 0)) / interval) + (nikke.FirstInterval && time > nikke.FirstInterval ? 1 : 0);
+      console.log(attack_count);
+      return (nikke.Charging + (nikke.ChargeAdditive ?? 0)) * attack_count * (nikke.ChargeMultiple ?? (nikke.Weapon == "RL" ? 4 : nikke.Weapon == "SG" ? 10 : 1));
+    }
 
-        function hex2hsl(hex) {
-            hex = hex.replace(/^#?/, "#");
-            let r = parseInt(hex.slice(1, 3), 16);
-            let g = parseInt(hex.slice(3, 5), 16);
-            let b = parseInt(hex.slice(5, 7), 16);
-            (r /= 255), (g /= 255), (b /= 255);
-            let max = Math.max(r, g, b),
-                min = Math.min(r, g, b);
-            let h,
-                s,
-                l = (max + min) / 2;
-            if (max == min) {
-                h = s = 0; // achromatic
-            } else {
-                let d = max - min;
-                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-                switch (max) {
-                    case r:
-                        h = (g - b) / d + (g < b ? 6 : 0);
-                        break;
-                    case g:
-                        h = (b - r) / d + 2;
-                        break;
-                    case b:
-                        h = (r - g) / d + 4;
-                        break;
-                }
-                h /= 6;
-            }
-            return [Math.round(h * 360 * 100) / 100, Math.round(s * 100) / 100, Math.round(l * 100) / 100];
+    function hex2hsl(hex) {
+      hex = hex.replace(/^#?/, "#");
+      let r = parseInt(hex.slice(1, 3), 16);
+      let g = parseInt(hex.slice(3, 5), 16);
+      let b = parseInt(hex.slice(5, 7), 16);
+      (r /= 255), (g /= 255), (b /= 255);
+      let max = Math.max(r, g, b),
+        min = Math.min(r, g, b);
+      let h,
+        s,
+        l = (max + min) / 2;
+      if (max == min) {
+        h = s = 0; // achromatic
+      } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+          case g:
+            h = (b - r) / d + 2;
+            break;
+          case b:
+            h = (r - g) / d + 4;
+            break;
         }
-    </script>
+        h /= 6;
+      }
+      return [Math.round(h * 360 * 100) / 100, Math.round(s * 100) / 100, Math.round(l * 100) / 100];
+    }
+  </script>
 </html>
