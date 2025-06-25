@@ -3,18 +3,30 @@ name: Deploy Vue Project
 on:
   push:
     branches:
-      - main  # 触发分支
+      - main
     paths:
-      - 'vue-project/**'  # 仅监控子目录变动
+      - 'vue-project/**'
+      - '.github/workflows/deploy.yml'
+
+# 重要：增加权限
+permissions:
+  contents: write  # 必须要有写入权限
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # 声明使用GitHub Pages环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 完整检出所有文件
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -23,7 +35,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'vue-project/package-lock.json'
 
-      # 处理符号链接问题
+      # 准备数据文件（移到构建步骤之后）
       - name: Prepare data and image files
         run: |
           mkdir -p vue-project/public/data
@@ -62,23 +74,23 @@ jobs:
           tree -L 3 vue-project/public/data || true
 
       - name: Install dependencies
-        working-directory: ./vue-project  # 进入子目录
-        run: npm ci  # 精准安装依赖
+        working-directory: ./vue-project
+        run: npm ci
 
       - name: Build project
         working-directory: ./vue-project
         run: npm run build
 
+      # 使用官方推荐部署流程
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload build artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./vue-project/dist 
+          path: ./vue-project/dist
 
+      # 使用官方部署（替换peaceiris方案）
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./vue-project/dist  # 构建产物目录
+        id: deployment
+        uses: actions/deploy-pages@v4
