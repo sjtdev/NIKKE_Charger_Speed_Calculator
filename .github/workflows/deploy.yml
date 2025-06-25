@@ -13,11 +13,53 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 完整检出所有文件
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20  # 按需修改版本
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: 'vue-project/package-lock.json'
+
+      # 处理符号链接问题
+      - name: Prepare data and image files
+        run: |
+          mkdir -p vue-project/public/data
+          
+          # 清理任何预存符号链接
+          find vue-project/public/data -type l -delete 2>/dev/null || true
+          rm -f vue-project/public/data/*.json 2>/dev/null || true
+          rm -rf vue-project/public/data/images 2>/dev/null || true
+          
+          # 创建干净的images目录
+          mkdir -p vue-project/public/data/images
+          
+          # 安全复制JSON文件
+          if [[ -f "nikkes.json" && ! -L "nikkes.json" ]]; then
+              cp nikkes.json vue-project/public/data/
+          else
+              echo "警告: nikkes.json 不可用或为符号链接"
+          fi
+          
+          if [[ -f "nikkes_add.json" && ! -L "nikkes_add.json" ]]; then
+              cp nikkes_add.json vue-project/public/data/
+          else
+              echo "警告: nikkes_add.json 不可用或为符号链接"
+          fi
+          
+          # 安全复制图片
+          if [ -d "images" ]; then
+              cp -r --no-dereference images/. vue-project/public/data/images/
+              echo "成功复制 $(find vue-project/public/data/images -type f | wc -l) 张图片"
+          else
+              echo "警告: images 目录未找到"
+          fi
+          
+          # 详细验证
+          echo "最终目录结构:"
+          tree -L 3 vue-project/public/data || true
 
       - name: Install dependencies
         working-directory: ./vue-project  # 进入子目录
@@ -25,7 +67,15 @@ jobs:
 
       - name: Build project
         working-directory: ./vue-project
-        run: npm run build  # 执行构建命令
+        run: npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./vue-project/dist 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
