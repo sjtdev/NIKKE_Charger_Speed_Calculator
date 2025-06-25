@@ -138,3 +138,20 @@ const chargeColor = computed(() => {
   }
 });
 </script>
+
+<style scoped>
+/* 添加marquee动画 */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+/* 将动画添加到Tailwind中 */
+.animate-marquee {
+  animation: marquee 10s linear infinite;
+}
+</style>

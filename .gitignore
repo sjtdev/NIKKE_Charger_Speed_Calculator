@@ -3,5 +3,5 @@ style.less
 nodeapp.js
 git_push.bat
 node_modules
-package*
+/package*
 .vscode

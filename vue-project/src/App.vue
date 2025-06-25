@@ -3,7 +3,7 @@
   <div v-for="(team, teamId) in teams" :key="teamId">
     <NikkeCardContainer class="h-48" :teamId="teamId" v-model="team.nikkes" />
   </div>
-  <FilterSordPanel @update:conditions="updateDisplayNikkes" />
+  <FilterSordPanel @update:conditions="updateDisplayNikkes" :count="showNikkeIDs.length" />
   <NikkeCardContainer v-model="nikkes" :visibleNikkes="showNikkeIDs" />
 </template>
 

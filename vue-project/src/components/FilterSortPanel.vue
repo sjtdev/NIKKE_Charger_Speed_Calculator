@@ -1,5 +1,5 @@
 <template>
-  <div id="filters" class="mb-3 text-white">
+  <div id="filters" class="mb-3 text-white relative">
     <div id="manufacturers" class="relative flex h-18 flex-grow-0">
       <div v-for="filter in manufacturers" :id="filter.name" class="m-0.5 flex w-15 items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
         <img :src="`data/images/${filter.name}_logo.webp`" :alt="filter.name" draggable="false" />
@@ -37,12 +37,16 @@
       </button>
       <div id="current_count" class="ml-auto flex w-14 items-center justify-center"><span id="cc_number"></span></div>
     </div>
+    <div id="count" class=" absolute right-4 bottom-0">{{ count }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { CODE_REPLACER } from "@/utils/constants";
 import { ref, type Ref } from "vue";
+
+defineProps(["count"])
+
 enum SortType {
   none = "-",
   asc = "↑",
