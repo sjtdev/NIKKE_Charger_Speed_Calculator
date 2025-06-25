@@ -2,7 +2,7 @@
   <div class="max-w-full">
     <div>
       <!-- 使用 draggable 包裹 -->
-      <draggable :list="sortedNikkes" :group="dragGroup" @change="handleChange" :component-data="getComponentData()" :clone="teamId ? undefined : cloneNikke" :move="checkMove" item-key="ID" class="flex min-h-33 flex-wrap"
+      <draggable :list="sortedNikkes" :group="dragGroup" :component-data="getComponentData()" :clone="teamId ? undefined : cloneNikke" :move="checkMove" item-key="ID" class="flex min-h-33 flex-wrap"
         ><!-- @change="handleChange" -->
         <template #item="{ element }" v-show="shouldShow(element)">
           <NikkeCard :nikke="element" :team="!!teamId" @remove="removeNikke" v-show="shouldShow(element)" />
@@ -61,7 +61,6 @@ const checkMove = ({ draggedContext, relatedContext }: any) => {
 const handleChange = (event: any) => {
   if (event.added) {
     console.log("Added item:", event.added.element);
-    console.log(burst1Timing.value);
   }
 };
 

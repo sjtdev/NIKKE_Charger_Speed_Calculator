@@ -96,7 +96,6 @@ const props = defineProps({
   nikke: { type: Object as PropType<Nikke>, required: true },
 });
 const name = props.nikke.Name_cn || props.nikke.Name;
-console.log(name);
 
 const popoverOpen = ref(false); // 控制Popover显示状态
 
