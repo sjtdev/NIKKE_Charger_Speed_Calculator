@@ -154,5 +154,8 @@
   { "ID": "833", "Name": "Misato", "Name_cn": "美里", "Color": "#7F50C7" },
   { "ID": "834", "Name": "Rei Ayanami (Tentative Name)", "Name_cn": "零（暂称）", "Color": "#B6D7F8" },
   { "ID": "835", "Name": "Asuka: WILLE", "Name_cn": "明日香：WILLE", "Color": "#DA2128" },
-  { "ID": "836", "Name": "Sakura Suzuhara", "Name_cn": "樱", "Color": "#B18365" }
+  { "ID": "836", "Name": "Sakura Suzuhara", "Name_cn": "樱", "Color": "#B18365" },
+  { "ID": "850", "Name": "EVE", "Name_cn": "伊芙", "Color": "#289569" },
+  { "ID": "851", "Name": "Raven", "Name_cn": "渡鸦", "Color": "#899FCF" },
+  { "ID": "852", "Name": "Lily", "Name_cn": "百合", "Color": "#FEAB29" }
 ]
