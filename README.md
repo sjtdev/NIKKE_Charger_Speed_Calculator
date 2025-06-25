@@ -5,3 +5,6 @@
 - 妮姬简体中文名与颜色值来自于游戏内图鉴，由本人输入完成。
 
 瞎写的，没啥用
+
+## 2025.06.25更新
+使用vue重写了页面，预览：https://sjtdev.github.io/NIKKE_Charger_Speed_Calculator/
