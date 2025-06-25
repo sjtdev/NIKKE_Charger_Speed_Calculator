@@ -2,27 +2,27 @@
   <div id="filters" class="mb-3 text-white">
     <div id="manufacturers" class="relative flex h-18 flex-grow-0">
       <div v-for="filter in manufacturers" :id="filter.name" class="m-0.5 flex w-15 items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
-        <img :src="`/data/images/${filter.name}_logo.webp`" :alt="filter.name" draggable="false" />
+        <img :src="`data/images/${filter.name}_logo.webp`" :alt="filter.name" draggable="false" />
       </div>
     </div>
     <div id="weapons" class="relative flex flex-grow-0">
       <div v-for="filter in weapons" :id="filter.name" class="m-0.5 flex items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
-        <img :src="`/data/images/Icn_weapon_${filter.name.toLowerCase()}.webp`" :alt="filter.name" draggable="false" class="w-12" />
+        <img :src="`data/images/Icn_weapon_${filter.name.toLowerCase()}.webp`" :alt="filter.name" draggable="false" class="w-12" />
       </div>
     </div>
     <div id="classes" class="relative flex flex-grow-0">
       <div v-for="filter in classes" :id="filter.name" class="m-0.5 flex items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
-        <img :src="`/data/images/icn_class_${filter.name.toLowerCase()}.webp`" :alt="filter.name" draggable="false" class="w-12" />
+        <img :src="`data/images/icn_class_${filter.name.toLowerCase()}.webp`" :alt="filter.name" draggable="false" class="w-12" />
       </div>
     </div>
     <div id="bursts" class="relative flex flex-grow-0">
       <div v-for="filter in bursts" :id="filter.name" class="m-0.5 flex items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
-        <img :src="`/data/images/icn_burst_${filter.name}.webp`" :alt="filter.name" draggable="false" class="w-12" />
+        <img :src="`data/images/icn_burst_${filter.name}.webp`" :alt="filter.name" draggable="false" class="w-12" />
       </div>
     </div>
     <div id="elements" class="relative flex flex-grow-0">
       <div v-for="filter in elements" id="Fire" class="m-0.5 flex items-center justify-center transition-all duration-150" :class="{ 'rounded-sm bg-[#6cf]': filter.active }" @click="toggleFilter(filter)">
-        <img :src="`/data/images/Code${CODE_REPLACER[filter.name]}_hexagon.webp`" :alt="filter.name" draggable="false" class="w-12" />
+        <img :src="`data/images/Code${CODE_REPLACER[filter.name]}_hexagon.webp`" :alt="filter.name" draggable="false" class="w-12" />
       </div>
     </div>
     <div id="orders" class="relative flex flex-grow-0">

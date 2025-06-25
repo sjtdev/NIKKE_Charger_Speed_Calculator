@@ -28,7 +28,7 @@ const nikkes: Nikke[] = [];
 const showNikkeIDs = ref<string[]>([]);
 
 onMounted(async () => {
-  const [rawRes, addRes] = await Promise.all([fetch("/data/nikkes.json"), fetch("/data/nikkes_add.json")]);
+  const [rawRes, addRes] = await Promise.all([fetch("data/nikkes.json"), fetch("data/nikkes_add.json")]);
 
   const raw_nikkes: Array<NikkeBase> = await rawRes.json();
   const raw_nikkes_add: Array<NikkeExtended> = await addRes.json();

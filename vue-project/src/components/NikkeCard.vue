@@ -1,24 +1,24 @@
 <template>
   <div class="group relative box-border overflow-hidden border-2 border-transparent bg-black transition-all duration-100 ease-out hover:z-50 hover:border-[#6cf] hover:shadow-md">
     <!-- 头像 -->
-    <img class="h-32 w-32 transition-all duration-100 ease-out group-hover:scale-110" :src="`/data/images/si_c${nikke.ID}_00_s.webp`" alt="" />
+    <img class="h-32 w-32 transition-all duration-100 ease-out group-hover:scale-110" :src="`data/images/si_c${nikke.ID}_00_s.webp`" alt="" />
     <div class="absolute top-0 right-0 flex flex-col items-center justify-center">
       <!-- 代码图标 -->
-      <img class="h-auto w-8" :src="`/data/images/Code${CODE_REPLACER[nikke.Element]}_hexagon.webp`" />
+      <img class="h-auto w-8" :src="`data/images/Code${CODE_REPLACER[nikke.Element]}_hexagon.webp`" />
       <div class="w-full bg-gray-500/50 text-center [text-shadow:_0_0_2px_#000,_0_0_2px_#000,_0_0_2px_#000,_0_0_2px_#000]" :class="chargeColor">{{ nikke.Charge }}</div>
     </div>
     <div class="absolute top-0 left-0 flex flex-col">
       <!-- 爆裂阶段图标 -->
       <div class="relative flex h-8 w-8 items-center bg-gray-500/25">
-        <img class="h-auto max-h-full w-full object-contain" :src="`/data/images/icn_burst_${nikke.Burst}.webp`" />
+        <img class="h-auto max-h-full w-full object-contain" :src="`data/images/icn_burst_${nikke.Burst}.webp`" />
       </div>
       <!-- 武器类型图标 -->
       <div class="relative flex h-8 w-8 items-center bg-gray-500/25">
-        <img class="h-auto max-h-full w-full object-contain" :src="`/data/images/Icn_weapon_${nikke.Weapon.toLowerCase()}.webp`" />
+        <img class="h-auto max-h-full w-full object-contain" :src="`data/images/Icn_weapon_${nikke.Weapon.toLowerCase()}.webp`" />
       </div>
       <!-- 类型图标 -->
       <div class="relative flex h-8 w-8 items-center bg-gray-500/25">
-        <img class="h-auto max-h-full w-full object-contain" :src="`/data/images/icn_class_${nikke.Class.toLowerCase()}.webp`" />
+        <img class="h-auto max-h-full w-full object-contain" :src="`data/images/icn_class_${nikke.Class.toLowerCase()}.webp`" />
       </div>
     </div>
     <div :style="`background:linear-gradient(to top, ${nikke.Color}, rgba(0, 0, 0, 0))`" class="absolute bottom-0 left-0 w-full">
