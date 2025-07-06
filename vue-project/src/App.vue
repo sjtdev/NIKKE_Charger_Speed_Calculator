@@ -1,8 +1,8 @@
 <template>
   <!-- 动态渲染所有队伍 -->
-  <div v-for="(team, teamId) in teams" :key="teamId">
+  <template v-for="(team, teamId) in teams" :key="teamId">
     <NikkeCardContainer class="h-48" :teamId="teamId" v-model="team.nikkes" />
-  </div>
+  </template>
   <FilterSordPanel @update:conditions="updateDisplayNikkes" :count="showNikkeIDs.length" />
   <NikkeCardContainer v-model="nikkes" :visibleNikkes="showNikkeIDs" />
 </template>

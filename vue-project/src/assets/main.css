@@ -124,4 +124,9 @@
 
 body {
   background-color: #000;
+  @apply h-[100dvh]
+}
+
+#app {
+  @apply h-full  flex flex-col;
 }

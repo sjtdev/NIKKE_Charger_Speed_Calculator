@@ -8,6 +8,10 @@ on:
       - 'vue-project/**'
       - '.github/workflows/deploy.yml'
 
+      - 'nikkes.json'
+      - 'nikkes_add.json'
+      - 'images/**'
+
 # 重要：增加权限
 permissions:
   contents: write  # 必须要有写入权限

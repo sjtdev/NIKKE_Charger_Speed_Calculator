@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-full">
+  <div class="max-w-full min-h-0 overflow-auto" :class="{'flex-none' : teamId,'flex-auto': !teamId}">
     <div>
       <!-- 使用 draggable 包裹 -->
       <draggable :list="sortedNikkes" :group="dragGroup" :component-data="getComponentData()" :clone="teamId ? undefined : cloneNikke" :move="checkMove" item-key="ID" class="flex min-h-33 flex-wrap"
